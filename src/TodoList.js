@@ -11,7 +11,8 @@ export default function TodoList({ listItems, checkedItem, removeItems }) {
         <main>
             <ul id="myUL">
                 {listItems.map((item) => (
-                    <li key={item.id} onClick={checkedItem(item.id)}>
+                    //the onclick runs for every item in the list because of the map function...
+                    <li key={item.id} className={item.complete ? "checked": ""} onClick={checkedItem(item.id)}>
                         <p>{item.value}</p>
                         <span className="delete" onClick={removeItems(item)}>
                              <i className="fas fa-times"/>
@@ -24,3 +25,7 @@ export default function TodoList({ listItems, checkedItem, removeItems }) {
         </main>
     )
 }
+
+// sorting
+// dates
+// make items editable

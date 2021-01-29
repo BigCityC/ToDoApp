@@ -3,13 +3,7 @@ import React, {useState, useEffect} from 'react'
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 
-const itemList = [
-    {id: 'a', value: 'learn react', complete: false},
-    {id: 'b', value: 'call bob', complete: false},
-    {id: 'c', value: 'go shopping',complete: false},
-    {id: 'd', value: 'eat breakfast',complete: false},
-    {id: 'e', value: 'grow avocados',complete: false}
-];
+
 const LOCAL_STORAGE_KEY = 'todoApp.items'
 
 function App() {
@@ -45,15 +39,16 @@ function App() {
 
     function checkedItem(id) {
         //have copy of current todoslist
-         const newTodos = [...items]
-         const todo = newTodos.find(items => items.id === id)
-         todo.complete = !todo.complete
-        console.log(todo)
-
-    }
-
-    function handleCheckedItem(item) {
-        return null
+        return function() {
+            const newTodos = items.map((item) => {
+                if (item.id !== id) {
+                    return item
+                } else {
+                    return {...item, complete: !item.complete}
+                }
+            })
+            setItems(newTodos)
+        }
     }
 
     return (

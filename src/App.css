@@ -1,38 +1,145 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap");
+
+/* Remove padding and margin */
+*
+{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+
+/* sets background color */
+body {
+  background-color: #ccc;
+}
+
+header {
+  background-color: purple;
+  padding: 15px;
+}
+
+
+.app-title {
+  font-family: Lobster, cursive;
   text-align: center;
+  margin-bottom: 1rem;
+  font-size: 3rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.input-text {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.input-text input {
+  width: 400px;
+  height: 35px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+i {
+  padding-right: 10px;
+}
+
+/* design for buttons */
+.btn-spacing {
+  display: flex;
+  max-height:35px;
+  width: 250px;
+  justify-content: space-between;
+}
+
+.btn {
+  border-radius:5%;
+  font-weight: bold;
+  text-align: center;
+  flex-shrink: 0;
+  max-height: 30px;
+
+
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn p {
+  display: flex;
+  flex-shrink: 0;
+  padding: 0 10px;
+
+}
+
+/*color and hover for add button*/
+.add {
+  background-color: #8f8f8f;
+  align-self: center;
+  padding: 8px 0;
+}
+.add:hover {
+  background: #a6a6a6;
+}
+
+/*color and hover for clear button*/
+.clear {
+  background-color: #f1f140;
+  align-self: center;
+  padding: 8px 0;
+
+}
+.clear:hover {
+  background-color: #f5f56b;
+}
+/*design for delete button*/
+.delete {
+  background-color: #ff3333;
+  flex: 0 0 50px;
+  cursor: pointer;
+}
+
+/* is there a more simple way to center the X */
+.fa-times {
+  position: relative;
+  left: 20px;
+  top: 15px;
+}
+
+/* list items design */
+ul li {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 100px;
+  background-color: white;
+  font-size: 18px;
+  height: 50px;
+  padding-left: 5px;
+
+}
+
+/* line through when a li has the "checked" class */
+ul li.checked p{
+  text-decoration: line-through;
+}
+
+.checked:before {
+  font-family: FontAwesome;
+  content: "\f00c";
+  padding-right: 10px;
+  align-self: center;
+}
+
+
+
+/* did i need to make the text under a p tag to alter it */
+ul li p {
+  flex: 1;
+  align-self: center;
+  font-family: Roboto, sans-serif;
+}
+
+.fa-check {
+  flex: 0 0 50px;
+  align-self: center;
+  padding-left: 5px;
+
 }

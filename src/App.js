@@ -25,20 +25,23 @@ function App() {
 
     function addItems() {
         setItems([...items, {id: uuidv4(), value: inputText, complete: false}])
+        setInputText( '')
     }
 
     function removeItems(item) {
-        return function() {
-            setItems(items.filter(removedItem => removedItem !== item))
-        }
+        console.log(item)
+        setItems(items.filter(removedItem => removedItem !== item))
+
     }
 
     function editItems(item) {
-        return function() {
+            console.log('edit')
             const itemToEdit = item.value
-            
-            setInputText(item.value)
-        }
+            setInputText(itemToEdit)
+            const index = items.findIndex((el) => el.id === item.id)
+            removeItems(items[index])
+
+
     }
 
     function clearItems() {
@@ -47,7 +50,7 @@ function App() {
 
     function checkedItem(id) {
         //have copy of current todoslist
-        return function() {
+
             const newTodos = items.map((item) => {
                 if (item.id !== id) {
                     return item
@@ -56,7 +59,7 @@ function App() {
                 }
             })
             setItems(newTodos)
-        }
+
     }
 
     return (

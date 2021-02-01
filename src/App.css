@@ -132,26 +132,17 @@ p.checked{
   text-decoration: line-through;
 }
 
-.checked:before {
-  font-family: FontAwesome;
-  content: "\f00c";
-  padding-right: 10px;
-  align-self: center;
-  text-transform: none;
-}
-
-
 
 /* did i need to make the text under a p tag to alter it */
 ul li p {
   flex: 1;
   align-self: center;
   font-family: Roboto, sans-serif;
-  PADDING: 10PX 0;
+  margin-left: 2px;
 }
 
 .fa-check {
-  flex: 0 0 50px;
+  flex: 0 0 20px;
   align-self: center;
   padding-left: 5px;
 

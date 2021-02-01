@@ -8,14 +8,15 @@
   border: 0;
 }
 
-
 /* sets background color */
 body {
-  background-color: #ccc;
+  /*background-image: url("./bush.png");*/
+  /*opacity: 50%;*/
+  background-color: lightgray;
 }
 
 header {
-  background-color: purple;
+  background-color: #b02fb0;
   padding: 15px;
 }
 

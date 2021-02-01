@@ -4,11 +4,13 @@ import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 
 
+
 const LOCAL_STORAGE_KEY = 'todoApp.items'
 
 function App() {
     const [items, setItems] = useState([])
     const [inputText, setInputText] = useState('')
+    const [listText, setListText] = useState('')
 
     useEffect(() => {
         const storedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
@@ -35,7 +37,6 @@ function App() {
     }
 
     function editItems(item) {
-            console.log('edit')
             const itemToEdit = item.value
             setInputText(itemToEdit)
             const index = items.findIndex((el) => el.id === item.id)

@@ -1,14 +1,14 @@
 import React from 'react'
-
 //set up an initial state for the itemList
 
 //set up use effect hooks to edit the list once it initializes
 
-export default function TodoList({ listItems, checkedItem, removeItems, editItems }) {
+export default function TodoList({listItems, checkedItem, removeItems, editItems }) {
 
 
     return (
         <main>
+            <div>
             <ul id="myUL">
                 {listItems.map((item) => (
                     //the onclick runs for every item in the list because of the map function...
@@ -22,7 +22,6 @@ export default function TodoList({ listItems, checkedItem, removeItems, editItem
                         </p>
                         <span className="edit" onClick={() => {
                             editItems(item)
-
                         }}>
                              <i className="fas fa-edit"/>
                          </span>
@@ -32,6 +31,7 @@ export default function TodoList({ listItems, checkedItem, removeItems, editItem
                     </li>
                 ))}
             </ul>
+            </div>
         </main>
     )
 }

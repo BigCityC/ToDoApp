@@ -33,6 +33,14 @@ function App() {
         }
     }
 
+    function editItems(item) {
+        return function() {
+            const itemToEdit = item.value
+            
+            setInputText(item.value)
+        }
+    }
+
     function clearItems() {
         setItems([])
     }
@@ -74,7 +82,7 @@ function App() {
                 </div>
             </header>
 
-            <TodoList  listItems={items} removeItems={removeItems} checkedItem={checkedItem}/>
+            <TodoList  listItems={items} removeItems={removeItems} checkedItem={checkedItem} editItems={editItems}/>
         </>
 
     )

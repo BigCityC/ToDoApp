@@ -96,12 +96,23 @@ i {
   flex: 0 0 50px;
   cursor: pointer;
 }
+.edit{
+  background-color: #80f151;
+  flex: 0 0 50px;
+  cursor: pointer;
+}
 
 /* is there a more simple way to center the X */
 .fa-times {
   position: relative;
   left: 20px;
   top: 15px;
+}
+
+.fa-edit {
+  display: flex;
+  JUSTIFY-CONTENT: FLEX-END;
+  MARGIN-TOP: 16PX;
 }
 
 /* list items design */
@@ -117,7 +128,7 @@ ul li {
 }
 
 /* line through when a li has the "checked" class */
-ul li.checked p{
+p.checked{
   text-decoration: line-through;
 }
 
@@ -126,6 +137,7 @@ ul li.checked p{
   content: "\f00c";
   padding-right: 10px;
   align-self: center;
+  text-transform: none;
 }
 
 
@@ -135,6 +147,7 @@ ul li p {
   flex: 1;
   align-self: center;
   font-family: Roboto, sans-serif;
+  PADDING: 10PX 0;
 }
 
 .fa-check {

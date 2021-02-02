@@ -37,7 +37,7 @@ function ListItem({ item, checkedItem, removeItems}) {
         // setInputText(itemToEdit)
         // const index = items.findIndex((el) => el.id === item.id)
         // removeItems(items[index])
-        setIfEditable(true)
+        setIfEditable(!editable)
         setListText(item.value)
 
 
@@ -59,6 +59,7 @@ function ListItem({ item, checkedItem, removeItems}) {
 
 
             <span className="edit" onClick={() => {
+                
                 editItems()
             }}>
                 <i className="fas fa-edit"/>

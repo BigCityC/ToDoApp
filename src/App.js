@@ -10,7 +10,6 @@ const LOCAL_STORAGE_KEY = 'todoApp.items'
 function App() {
     const [items, setItems] = useState([])
     const [inputText, setInputText] = useState('')
-    const [listText, setListText] = useState('')
 
     useEffect(() => {
         const storedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
@@ -33,15 +32,6 @@ function App() {
     function removeItems(item) {
         console.log(item)
         setItems(items.filter(removedItem => removedItem !== item))
-
-    }
-
-    function editItems(item) {
-            const itemToEdit = item.value
-            setInputText(itemToEdit)
-            const index = items.findIndex((el) => el.id === item.id)
-            removeItems(items[index])
-
 
     }
 
@@ -86,7 +76,7 @@ function App() {
                 </div>
             </header>
 
-            <TodoList  listItems={items} removeItems={removeItems} checkedItem={checkedItem} editItems={editItems}/>
+            <TodoList  listItems={items} removeItems={removeItems} checkedItem={checkedItem}/>
         </>
 
     )

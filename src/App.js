@@ -26,8 +26,12 @@ function App() {
     }
 
     function addItems() {
-        setItems([...items, {id: uuidv4(), value: inputText, complete: false}])
-        setInputText( '')
+        if (inputText) {
+            setItems([...items, {id: uuidv4(), value: inputText, complete: false}])
+            setInputText( '')
+        } else {
+            alert('Input cannot be blank, please try again.')
+        }
     }
 
     function removeItems(item) {

@@ -41,8 +41,6 @@ function App() {
             setInputText(itemToEdit)
             const index = items.findIndex((el) => el.id === item.id)
             removeItems(items[index])
-
-
     }
 
     function clearItems() {
@@ -61,6 +59,10 @@ function App() {
             })
             setItems(newTodos)
 
+    }
+
+    function sortList() {
+        setItems(items.sort((a,b) => (a.value > b.value) ? 1 : -1))
     }
 
     return (
@@ -86,7 +88,7 @@ function App() {
                 </div>
             </header>
 
-            <TodoList  listItems={items} removeItems={removeItems} checkedItem={checkedItem} editItems={editItems}/>
+            <TodoList  listItems={items} removeItems={removeItems} checkedItem={checkedItem} editItems={editItems} sortList={sortList}/>
         </>
 
     )

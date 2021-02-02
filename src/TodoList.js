@@ -3,13 +3,13 @@ import React from 'react'
 
 //set up use effect hooks to edit the list once it initializes
 
-export default function TodoList({listItems, checkedItem, removeItems, editItems }) {
+export default function TodoList({listItems, checkedItem, removeItems, editItems, sortList }) {
 
 
     return (
         <main>
             <div>
-            <ul id="myUL">
+            <ul id="myUL" {...sortList()}>
                 {listItems.map((item) => (
                     //the onclick runs for every item in the list because of the map function...
                     <li key={item.id}>

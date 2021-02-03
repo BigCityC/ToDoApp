@@ -166,7 +166,7 @@ ul li input {
   font-size: 18px;
   margin-left: 5px;
   height: 25px;
-  /*align-self: center;*/
+  align-self: center;
 }
 
 .fa-check {

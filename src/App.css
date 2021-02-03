@@ -15,6 +15,7 @@ body {
   background-color: lightgray;
 }
 
+
 header {
   background-color: #b02fb0;
   padding: 15px;
@@ -45,9 +46,9 @@ i {
 /* design for buttons */
 .btn-spacing {
   display: flex;
-  max-height:35px;
+  justify-content: flex-end;
   width: 250px;
-  justify-content: space-between;
+
 }
 
 .btn {
@@ -140,6 +141,14 @@ ul li p {
   align-self: center;
   font-family: Roboto, sans-serif;
   margin-left: 2px;
+}
+
+ul li input {
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  margin-left: 5px;
+  height: 25px;
+  align-self: center;
 }
 
 .fa-check {

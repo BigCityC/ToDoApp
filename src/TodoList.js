@@ -7,7 +7,7 @@ export default function TodoList({ listItems, checkedItem, removeItems }) {
 
 
     return (
-        <main>
+        <main className="container-background">
             <div>
             <ul id="myUL">
                 {listItems.map((item) => (
@@ -57,7 +57,7 @@ function ListItem({ item, checkedItem, removeItems}) {
                     </p>
             }
 
-
+            <div className="btn-spacing">
             <span className="edit" onClick={() => {
                 
                 editItems()
@@ -67,6 +67,7 @@ function ListItem({ item, checkedItem, removeItems}) {
             <span className="delete" onClick={() => {removeItems(item)}}>
                  <i className="fas fa-times"/>
              </span>
+            </div>
         </li>
     )
 }

@@ -7,15 +7,13 @@ export default function TodoList({ listItems, checkedItem, removeItems }) {
 
 
     return (
-        <main className="container-background">
-            <div>
+        <main>
             <ul id="myUL">
                 {listItems.map((item) => (
                     //the onclick runs for every item in the list because of the map function...
                     <ListItem item={item} checkedItem={checkedItem} removeItems={removeItems} />
                 ))}
             </ul>
-            </div>
         </main>
     )
 }

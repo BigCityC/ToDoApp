@@ -11,8 +11,10 @@ export default function TodoList({items, checkedItem, removeItems, setItems }) {
     return (
         <main>
             <ul id="myUL">
+                <span className="sort-button">
+                    <i className="fas fa-sort fa-2x"/>
+                </span>
                 {items.map((item, index) => (
-                    //the onclick runs for every item in the list because of the map function...
                     <ListItem
                         key={index}
                         item={item}

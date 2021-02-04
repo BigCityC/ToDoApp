@@ -17,6 +17,7 @@ function App() {
     }, [])
 
     useEffect(() => {
+        console.log(items)
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
     }, [items])
 
@@ -58,9 +59,9 @@ function App() {
 
     }
 
-    function sortList() {
-        setItems(items.sort((a,b) => (a.value > b.value) ? 1 : -1))
-    }
+    //function sortList() {
+      //  setItems(items.sort((a,b) => (a.value > b.value) ? 1 : -1))
+    //}
 
     return (
         <>
@@ -73,6 +74,7 @@ function App() {
                            onChange={handleInput}
                            value={inputText}
                     />
+                    <input type="date"/>
                     <div className="btn-spacing">
                         <span className="add btn" id="todoListAdd" onClick={addItems}>
                             <p><i className="fas fa-plus"/>Add</p>
@@ -89,7 +91,6 @@ function App() {
             <TodoList  items={items}
                        removeItems={removeItems}
                        checkedItem={checkedItem}
-                       sortList={sortList}
                        setItems={setItems}/>
 
         </>

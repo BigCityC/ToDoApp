@@ -6,21 +6,17 @@ import React, {useState} from "react";
 
 // when you hit enter it saves it
 //update items state
-// sorting by name
+// sorting by name or date
 // make items editable inline
 export default function ListItem({ item, items, setItems, checkedItem, removeItems}) {
     const [listText, setListText] = useState('')
     const [editable, setIfEditable] = useState(false)
 
     function editItems() {
-        // const itemToEdit = item.value
-        // setInputText(itemToEdit)
-        // const index = items.findIndex((el) => el.id === item.id)
-        // removeItems(items[index])
         setIfEditable(!editable)
         setListText(item.value)
         handleToggleComplete(item.id)
-        }
+    }
 
 
     function handleInputChange(e) {
@@ -30,9 +26,13 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 
     function handleToggleComplete(id) {
         const updatedList = items.map((item) => {
-            if (item.id === id) return {
-                ...item,
-                value: listText,
+            if (item.id === id) {
+                return {
+                    ...item,
+                    value: listText,
+                }
+            } else {
+                return item
             }
         })
         setItems(updatedList)

@@ -8,7 +8,7 @@ import React, {useState} from "react";
 //update items state
 // sorting by name
 // make items editable inline
-export default function ListItem({ item, checkedItem, removeItems}) {
+export default function ListItem({ item, items, setItems, checkedItem, removeItems}) {
     const [listText, setListText] = useState('')
     const [editable, setIfEditable] = useState(false)
 
@@ -19,12 +19,23 @@ export default function ListItem({ item, checkedItem, removeItems}) {
         // removeItems(items[index])
         setIfEditable(!editable)
         setListText(item.value)
-        item.value = listText
-        console.log(item)
-    }
+        handleToggleComplete(item.id)
+        }
+
 
     function handleInputChange(e) {
         setListText(e.target.value)
+
+    }
+
+    function handleToggleComplete(id) {
+        const updatedList = items.map((item) => {
+            if (item.id === id) return {
+                ...item,
+                value: listText,
+            }
+        })
+        setItems(updatedList)
     }
 
     return (

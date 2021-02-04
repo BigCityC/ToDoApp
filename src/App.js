@@ -86,7 +86,11 @@ function App() {
             </header>
 
 
-            <TodoList  listItems={items} removeItems={removeItems} checkedItem={checkedItem} sortList={sortList}/>
+            <TodoList  items={items}
+                       removeItems={removeItems}
+                       checkedItem={checkedItem}
+                       sortList={sortList}
+                       setItems={setItems}/>
 
         </>
 

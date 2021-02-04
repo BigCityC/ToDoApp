@@ -5,16 +5,21 @@ import ListItem from "./ListItem"
 //set up use effect hooks to edit the list once it initializes
 
 
-export default function TodoList({listItems, checkedItem, removeItems, editItems, sortList }) {
+export default function TodoList({items, checkedItem, removeItems, setItems, sortList }) {
 
 
     return (
         <main>
             <div>
             <ul id="myUL" {...sortList()}>
-                {listItems.map((item) => (
+                {items.map((item) => (
                     //the onclick runs for every item in the list because of the map function...
-                    <ListItem item={item} checkedItem={checkedItem} removeItems={removeItems} />
+                    <ListItem item={item}
+                              items={items}
+                              checkedItem={checkedItem}
+                              removeItems={removeItems}
+                              setItems={setItems}
+                    />
                 ))}
             </ul>
             </div>

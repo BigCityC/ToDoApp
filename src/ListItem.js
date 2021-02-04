@@ -19,16 +19,19 @@ export default function ListItem({ item, checkedItem, removeItems}) {
         // removeItems(items[index])
         setIfEditable(!editable)
         setListText(item.value)
+        item.value = listText
+        console.log(item)
+    }
 
-
-
-
+    function handleInputChange(e) {
+        setListText(e.target.value)
     }
 
     return (
         <li key={item.id}>
             {item.complete && <i className="fas fa-check"/>}
-            {editable ? <input type="text" value={listText} />
+            {editable ? <input type="text" value={listText} onChange={handleInputChange}/>
+
                 :   <p
                     className={item.complete ? "checked" : ""}
                     onClick={() => {checkedItem(item.id)}}

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import ListItem from "./ListItem"
 //set up an initial state for the itemList
 
@@ -10,7 +10,6 @@ export default function TodoList({items, checkedItem, removeItems, setItems }) {
 
     return (
         <main>
-            <div>
             <ul id="myUL">
                 {items.map((item, index) => (
                     //the onclick runs for every item in the list because of the map function...
@@ -24,7 +23,6 @@ export default function TodoList({items, checkedItem, removeItems, setItems }) {
                     />
                 ))}
             </ul>
-            </div>
         </main>
     )
 }

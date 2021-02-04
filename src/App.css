@@ -5,7 +5,7 @@
 {
   margin: 0;
   padding: 0;
-  border-box: 0;
+  border: 0;
 }
 
 /* sets background color */
@@ -20,15 +20,6 @@ header {
   background-color: #B063F2;
   padding: 15px;
 }
-
-main {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-
-
-}
-
 
 .app-title {
   font-family: Lobster, cursive;
@@ -56,7 +47,6 @@ i {
   display: flex;
   justify-content: flex-end;
   width: 250px;
-
 }
 
 .btn {
@@ -65,19 +55,14 @@ i {
   text-align: center;
   flex-shrink: 0;
   max-height: 30px;
-
-
 }
-
 .btn:hover {
   cursor: pointer;
 }
-
 .btn p {
   display: flex;
   flex-shrink: 0;
   padding: 0 10px;
-
 }
 
 /*color and hover for add button*/
@@ -95,46 +80,26 @@ i {
   background-color: #f1f140;
   align-self: center;
   padding: 8px 0;
-
 }
 .clear:hover {
   background-color: #f5f56b;
 }
-/*design for delete button*/
-.delete {
-  background-color: #ff3333;
-  flex: 0 0 50px;
-  cursor: pointer;
-}
-.edit{
-  background-color: #80f151;
-  flex: 0 0 50px;
-  cursor: pointer;
-}
 
-/* is there a more simple way to center the X */
-.fa-times {
-  position: relative;
-  left: 20px;
-  top: 15px;
-}
-
-.fa-edit {
+/*TODOLIST.JS STYLING*/
+main {
   display: flex;
-  JUSTIFY-CONTENT: FLEX-END;
-  MARGIN-TOP: 16PX;
+  flex-direction: column;
 }
 
 ul {
-  border: 1px solid;
   display: flex;
   flex-direction: column;
   width: 80%;
-
-
-
-
+  margin: 0 auto;
 }
+
+/*LISTITEM.JS STYLING*/
+
 /* list items design */
 ul li {
   display: flex;
@@ -144,14 +109,7 @@ ul li {
   font-size: 18px;
   height: 3em;
   padding-left: 5px;
-
 }
-
-/* line through when a li has the "checked" class */
-p.checked{
-  text-decoration: line-through;
-}
-
 
 /* did i need to make the text under a p tag to alter it */
 ul li p {
@@ -159,6 +117,16 @@ ul li p {
   align-self: center;
   font-family: Roboto, sans-serif;
   margin-left: 2px;
+}
+/* line through when a li has the "checked" class */
+p.checked{
+  text-decoration: line-through;
+}
+
+.fa-check {
+  flex: 0 0 20px;
+  align-self: center;
+  padding-left: 5px;
 }
 
 ul li input {
@@ -169,9 +137,26 @@ ul li input {
   align-self: center;
 }
 
-.fa-check {
-  flex: 0 0 20px;
-  align-self: center;
-  padding-left: 5px;
+.edit{
+  background-color: #80f151;
+  flex: 0 0 50px;
+  cursor: pointer;
+}
+.fa-edit {
+  display: flex;
+  JUSTIFY-CONTENT: FLEX-END;
+  MARGIN-TOP: 16PX;
+}
 
+/*design for delete button*/
+.delete {
+  background-color: #ff3333;
+  flex: 0 0 50px;
+  cursor: pointer;
+}
+/* is there a more simple way to center the X */
+.fa-times {
+  position: relative;
+  left: 20px;
+  top: 15px;
 }

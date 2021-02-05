@@ -67,6 +67,7 @@ function App() {
         <>
             <header>
                 <h2 className="app-title">Todo List</h2>
+                <div className="wrapper">
                 <div className="input-text">
                     <input id="todolist-input"
                            placeholder="Input a Task Here..."
@@ -74,16 +75,17 @@ function App() {
                            onChange={handleInput}
                            value={inputText}
                     />
-                    <input type="date"/>
-                    <div className="btn-spacing">
-                        <span className="add btn" id="todoListAdd" onClick={addItems}>
-                            <p><i className="fas fa-plus"/>Add</p>
-                        </span>
+                    <input id="date-input" type="date"/>
+                </div>
+                <div className="input-buttons">
+                    <span className="add btn" id="todoListAdd" onClick={addItems}>
+                        <p><i className="fas fa-plus"/>Add</p>
+                    </span>
 
-                        <span className="clear btn" id="todoListClear" onClick={clearItems}>
-                            <p><i className="fas fa-eraser"/>Clear All</p>
-                        </span>
-                    </div>
+                    <span className="clear btn" id="todoListClear" onClick={clearItems}>
+                        <p><i className="fas fa-eraser"/>Clear All</p>
+                    </span>
+                </div>
                 </div>
             </header>
 

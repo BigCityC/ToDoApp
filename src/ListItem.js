@@ -51,7 +51,6 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                 </p>
             }
 
-            <div className="btn-spacing">
             <span className="edit" onClick={() => {
 
                 editItems()
@@ -61,7 +60,6 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                 <span className="delete" onClick={() => {removeItems(item)}}>
                  <i className="fas fa-times"/>
              </span>
-            </div>
         </li>
     )
 }

@@ -8,6 +8,22 @@
   border: 0;
 }
 
+@media only screen and (max-width: 955px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-text {
+    height: 2em;
+    align-self: center;
+  }
+
+  .input-buttons {
+    align-self: center;
+  }
+}
+
 /* sets background color */
 body {
   /*background-image: url("./bush.png");*/
@@ -24,29 +40,47 @@ header {
 .app-title {
   font-family: Lobster, cursive;
   text-align: center;
-  margin-bottom: 1rem;
-  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-size: 4rem;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+  align-items: flex-end;
 }
 
 .input-text {
   display: flex;
-  justify-content: center;
+  height: 2em;
+  flex: 3;
+
 }
 
-.input-text input {
-  width: 400px;
-  height: 35px;
+/*.input-text input {*/
+/*  width: 400px;*/
+/*  height: 35px;*/
+/*}*/
+
+#todolist-input {
+  flex: 3;
+  flex-shrink: 1;
 }
 
-i {
-  padding-right: 10px;
+#date-input {
+  flex: 1;
+  flex-shrink: 0;
 }
 
 /* design for buttons */
-.btn-spacing {
+.input-buttons {
   display: flex;
-  justify-content: flex-end;
-  width: 250px;
+  justify-content:space-around;
+  flex: 1;
+  margin-top: 1rem;
+
 }
 
 .btn {
@@ -137,15 +171,17 @@ ul li input {
   align-self: center;
 }
 
+/*design for edit button*/
 .edit{
   background-color: #80f151;
   flex: 0 0 50px;
   cursor: pointer;
+  position: relative;
 }
 .fa-edit {
-  display: flex;
-  JUSTIFY-CONTENT: FLEX-END;
-  MARGIN-TOP: 16PX;
+  position:absolute;
+  top: 1rem;
+  left: 1rem;
 }
 
 /*design for delete button*/
@@ -153,10 +189,10 @@ ul li input {
   background-color: #ff3333;
   flex: 0 0 50px;
   cursor: pointer;
-}
-/* is there a more simple way to center the X */
-.fa-times {
   position: relative;
-  left: 20px;
-  top: 15px;
+}
+.fa-times {
+  position:absolute;
+  top: 1rem;
+  left: 1rem;
 }

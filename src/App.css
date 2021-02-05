@@ -31,6 +31,10 @@ body {
   background: linear-gradient(to right top, #D4DAFF, #D9DAFF);
 }
 
+/*VARIABLES*/
+:root {
+  --box-shadow-specs: 10px 10px 16px -13px rgba(0,0,0,1);
+}
 
 header {
   background-color: #B063F2;
@@ -104,6 +108,7 @@ header {
   background-color: #8f8f8f;
   align-self: center;
   padding: 8px 0;
+
 }
 .add:hover {
   background: #a6a6a6;
@@ -128,8 +133,38 @@ main {
 ul {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
+
+}
+
+.sort-button {
+  border-radius: 1rem;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(
+          to right top,
+          rgba(235, 142, 30,0.9),
+          rgba(235, 142, 30,0.5));
+  cursor: pointer;
+  -webkit-box-shadow: var(--box-shadow-specs);
+  -moz-box-shadow: var(--box-shadow-specs);
+  box-shadow: var(--box-shadow-specs);
+}
+@media only screen and (min-width: 992px) {
+  .sort-button {
+    top: 1rem;
+    right: 2rem;
+    padding: 1rem 1.5rem;
+  }
+}
+.sort-button:hover {
+  background: linear-gradient(
+          to right top,
+          rgba(235, 130, 0,0.9),
+          rgba(235, 130, 0,0.5));
 }
 
 /*LISTITEM.JS STYLING*/
@@ -138,13 +173,16 @@ ul {
 ul li {
   display: flex;
   justify-content: space-between;
-  margin: 1rem 0;
+  margin: 1rem auto;
   background-color: white;
   font-size: 18px;
   height: 3em;
   padding-left: 5px;
+  width: 75%;
+  -webkit-box-shadow: var(--box-shadow-specs);
+  -moz-box-shadow: var(--box-shadow-specs);
+  box-shadow: var(--box-shadow-specs);
 }
-
 /* did i need to make the text under a p tag to alter it */
 ul li p {
   flex: 1;

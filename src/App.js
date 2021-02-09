@@ -9,17 +9,30 @@ const LOCAL_STORAGE_KEY = 'todoApp.items'
 
 function App() {
     const [items, setItems] = useState([])
+    const [loading, setLoading] = useState(true)
     const [inputText, setInputText] = useState('')
+    const [sort_asc, setSort] = useState(true)
 
     useEffect(() => {
-        const storedItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
+        const data = localStorage.getItem(LOCAL_STORAGE_KEY)
+        const storedItems = JSON.parse(data)
         if (storedItems) setItems(storedItems)
+        setLoading(false)
     }, [])
 
     useEffect(() => {
         console.log(items)
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
+        !loading && localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
     }, [items])
+
+    useEffect(() => {
+        if (items.length) {
+            const _items = [...items]
+            _items.sort((a, b) => a.value.localeCompare(b.value))
+            if (!sort_asc) _items.reverse()
+            setItems(_items)
+        }
+    }, [sort_asc])
 
     function handleInput(event) {
         setInputText(event.target.value)
@@ -27,11 +40,18 @@ function App() {
 
     function addItems() {
         if (inputText) {
-            setItems([...items, {id: uuidv4(), value: inputText, complete: false}])
+            const _items = [...items, {id: uuidv4(), value: inputText, complete: false}]
+            _items.sort((a, b) => a.value.localeCompare(b.value))
+            if (!sort_asc) _items.reverse()
+            setItems(_items)
             setInputText( '')
         } else {
             alert('Input cannot be blank, please try again.')
         }
+    }
+
+    function toggleSort() {
+        setSort(!sort_asc)
     }
 
     function removeItems(item) {
@@ -58,10 +78,6 @@ function App() {
             setItems(newTodos)
 
     }
-
-    //function sortList() {
-      //  setItems(items.sort((a,b) => (a.value > b.value) ? 1 : -1))
-    //}
 
     return (
         <>
@@ -93,7 +109,9 @@ function App() {
             <TodoList  items={items}
                        removeItems={removeItems}
                        checkedItem={checkedItem}
-                       setItems={setItems}/>
+                       setItems={setItems}
+                       toggleSort={toggleSort}
+            />
 
         </>
 

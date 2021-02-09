@@ -5,20 +5,18 @@ import ListItem from "./ListItem"
 //set up use effect hooks to edit the list once it initializes
 
 
-export default function TodoList({items, checkedItem, removeItems, setItems }) {
+export default function TodoList({items, checkedItem, removeItems, setItems, toggleSort }) {
 
     //if sort is true, sort is ascending, if false, its descending
-    const [sort_asc, setSort] = useState('true')
 
-    useEffect(() => {
-        sort_asc ? items.sort((a,b) => (a.value > b.value) ? 1 : -1)
-            :items.sort((a,b) => (a.value < b.value) ? 1 : -1)
-    },[items,sort_asc])
 
-    function toggleSort() {
-        setSort(!sort_asc)
-        console.log(sort_asc)
-    }
+    // useEffect(() => {
+    //     sort_asc ? items.sort((a,b) => (a.value > b.value) ? 1 : -1)
+    //         :items.sort((a,b) => (a.value < b.value) ? 1 : -1)
+    // },[items,sort_asc])
+
+
+
 
     return (
         <main>

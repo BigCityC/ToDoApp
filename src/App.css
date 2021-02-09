@@ -202,13 +202,23 @@ p.checked{
 }
 
 ul li input {
+  flex: 1;
   font-family: Roboto, sans-serif;
   font-size: 18px;
   margin-left: 5px;
   height: 25px;
   align-self: center;
+  outline-color: #a09f9f;
 }
 
+
+  /*design for list item date*/
+.date_item {
+  font-size: 0.8em;
+  color: #9d9b9b;
+  padding-right: 2rem;
+  align-self: center;
+}
 /*design for edit button*/
 .edit{
   background-color: #80f151;

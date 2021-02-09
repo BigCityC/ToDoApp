@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export default function ListItem({ item, items, setItems, checkedItem, removeItems}) {
+export default function ListItem({ item, items, setItems, checkedItem, removeItems, date}) {
     const [listText, setListText] = useState('')
     const [editable, setIfEditable] = useState(false)
 
@@ -33,18 +33,22 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
     return (
         <li key={item.id}>
             {item.complete && <i className="fas fa-check"/>}
-            {editable ? <input type="text" value={listText} onChange={handleInputChange}/>
+            {editable ?
+                <input type="text" value={listText} onChange={handleInputChange}/>
 
-                :   <p
-                    className={item.complete ? "checked" : ""}
-                    onClick={() => {checkedItem(item.id)}}
-                >
-                    {item.value}
+                :
+
+                <p className={item.complete ? "checked" : ""}
+                   onClick={() => {checkedItem(item.id)}}>
+                        {item.value}
                 </p>
             }
 
-            <span className="edit" onClick={() => {
+            <div className="date_item">
+                {`Due:  ${item.date}`}
+            </div>
 
+            <span className="edit" onClick={() => {
                 editItems()
             }}>
                 <i className="fas fa-edit"/>

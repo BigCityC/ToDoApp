@@ -2,6 +2,8 @@ import TodoList from './TodoList';
 import React, {useState, useEffect} from 'react'
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
+import moment from "moment";
+
 
 
 
@@ -11,6 +13,7 @@ function App() {
     const [items, setItems] = useState([])
     const [inputText, setInputText] = useState('')
     const [sort_asc, setSort] = useState(true)
+    const [date,setDate] = useState(moment().format("YYYY-MM-DD"))
 
 
     useEffect(() => {
@@ -36,10 +39,14 @@ function App() {
         setInputText(event.target.value)
     }
 
+    function handleDateInput(event) {
+        setDate(event.target.value)
+    }
+
 
     function addItems() {
         if (inputText) {
-            const _items = [...items, {id: uuidv4(), value: inputText, complete: false}]
+            const _items = [...items, {id: uuidv4(), value: inputText, date:date, complete: false}]
             _items.sort((a, b) => a.value.localeCompare(b.value))
             if (!sort_asc) _items.reverse()
             setItems(_items)
@@ -89,7 +96,7 @@ function App() {
                            onChange={handleInput}
                            value={inputText}
                     />
-                    <input id="date-input" type="date"/>
+                    <input id="date-input" type="date" value={date} onChange={handleDateInput}/>
                 </div>
                 <div className="input-buttons">
                     <span className="add btn" id="todoListAdd" onClick={addItems}>
@@ -109,6 +116,7 @@ function App() {
                        checkedItem={checkedItem}
                        setItems={setItems}
                        toggleSort={toggleSort}
+                       date={date}
             />
 
         </>

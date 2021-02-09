@@ -1,21 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import ListItem from "./ListItem"
-//set up an initial state for the itemList
-
-//set up use effect hooks to edit the list once it initializes
 
 
 export default function TodoList({items, checkedItem, removeItems, setItems, toggleSort }) {
-
-    //if sort is true, sort is ascending, if false, its descending
-
-
-    // useEffect(() => {
-    //     sort_asc ? items.sort((a,b) => (a.value > b.value) ? 1 : -1)
-    //         :items.sort((a,b) => (a.value < b.value) ? 1 : -1)
-    // },[items,sort_asc])
-
-
 
 
     return (

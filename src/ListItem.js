@@ -1,13 +1,5 @@
 import React, {useState} from "react";
-//when edit button clicked,
-//input box comes up and lets you edit the list item value
-//input box only shows when edit button is clicked
-// if edit button is clicked show the input box until enter key
 
-// when you hit enter it saves it
-//update items state
-// sorting by name or date
-// make items editable inline
 export default function ListItem({ item, items, setItems, checkedItem, removeItems}) {
     const [listText, setListText] = useState('')
     const [editable, setIfEditable] = useState(false)

@@ -9,20 +9,18 @@ const LOCAL_STORAGE_KEY = 'todoApp.items'
 
 function App() {
     const [items, setItems] = useState([])
-    const [loading, setLoading] = useState(true)
     const [inputText, setInputText] = useState('')
     const [sort_asc, setSort] = useState(true)
+
 
     useEffect(() => {
         const data = localStorage.getItem(LOCAL_STORAGE_KEY)
         const storedItems = JSON.parse(data)
         if (storedItems) setItems(storedItems)
-        setLoading(false)
     }, [])
 
     useEffect(() => {
-        console.log(items)
-        !loading && localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
     }, [items])
 
     useEffect(() => {
@@ -37,6 +35,7 @@ function App() {
     function handleInput(event) {
         setInputText(event.target.value)
     }
+
 
     function addItems() {
         if (inputText) {
@@ -55,7 +54,6 @@ function App() {
     }
 
     function removeItems(item) {
-        console.log(item)
         setItems(items.filter(removedItem => removedItem !== item))
 
     }

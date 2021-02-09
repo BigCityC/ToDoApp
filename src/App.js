@@ -26,10 +26,12 @@ function App() {
     }, [items])
 
     useEffect(() => {
-        const _items = [...items]
-        _items.sort((a, b) => a.value.localeCompare(b.value))
-        if (!sort_asc) _items.reverse()
-        setItems(_items)
+        if (items.length) {
+            const _items = [...items]
+            _items.sort((a, b) => a.value.localeCompare(b.value))
+            if (!sort_asc) _items.reverse()
+            setItems(_items)
+        }
     }, [sort_asc])
 
     function handleInput(event) {

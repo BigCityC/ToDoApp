@@ -3,17 +3,22 @@ import React, {useState} from "react";
 export default function ListItem({ item, items, setItems, checkedItem, removeItems, date}) {
     const [listText, setListText] = useState('')
     const [editable, setIfEditable] = useState(false)
+    const [listDate, setListDate] = useState(date)
 
     function editItems() {
         setIfEditable(!editable)
         setListText(item.value)
+        setListDate(item.date)
         handleToggleComplete(item.id)
     }
 
 
     function handleInputChange(e) {
         setListText(e.target.value)
+    }
 
+    function handleDateChange(e) {
+        setListDate(e.target.value)
     }
 
     function handleToggleComplete(id) {
@@ -22,6 +27,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                 return {
                     ...item,
                     value: listText,
+                    date: listDate,
                 }
             } else {
                 return item
@@ -34,19 +40,23 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
         <li key={item.id}>
             {item.complete && <i className="fas fa-check"/>}
             {editable ?
-                <input type="text" value={listText} onChange={handleInputChange}/>
+                <div className="editable">
+                    <input type="text" value={listText} onChange={handleInputChange}/>
+                    <input className="date_input" id="date-input" type="date" value={listDate} onChange={handleDateChange}/>
+                </div>
 
                 :
-
-                <p className={item.complete ? "checked" : ""}
-                   onClick={() => {checkedItem(item.id)}}>
+                <div className="not_editable">
+                    <p className={item.complete ? "checked" : ""}
+                       onClick={() => {checkedItem(item.id)}}>
                         {item.value}
-                </p>
+                    </p>
+                    <span className="date_item">
+                        {`Due:  ${item.date}`}
+                    </span>
+                </div>
             }
 
-            <div className="date_item">
-                {`Due:  ${item.date}`}
-            </div>
 
             <span className="edit" onClick={() => {
                 editItems()

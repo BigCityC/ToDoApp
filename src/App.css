@@ -195,6 +195,29 @@ p.checked{
   text-decoration: line-through;
 }
 
+.editable {
+  display: flex;
+  justify-content:space-between;
+  flex: 1;
+}
+
+.editable input[type="text"] {
+  flex: 4;
+}
+
+.editable input[type="date"] {
+  flex: 1;
+}
+
+.date_input {
+  font-size: 0.8em;
+  color: #9d9b9b;
+}
+
+.not_editable {
+  display: flex;
+  flex: 1;
+}
 .fa-check {
   flex: 0 0 20px;
   align-self: center;

@@ -5,6 +5,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
     const [listText, setListText] = useState('')
     const [editable, setIfEditable] = useState(false)
     const [listDate, setListDate] = useState(date)
+    const [overdue, setOverdue] = useState(false)
 
     function editItems() {
         setIfEditable(!editable)
@@ -53,10 +54,18 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                        onClick={() => {checkedItem(item.id)}}>
                         {item.value}
                     </p>
-                    <span className="date_item">
-                        {`Due:  ${moment(item.date, "YYYY MM Do").format('LL')}`}
+                    {!overdue ?
+                        <span className="overdue date_item">
+                            {console.log(item.date)}
+                            {`OverDue by ${item.date - moment()} days.`}
+                        </span>
+                    :
+                        <span className="ontime date_item">
+                            {`Due:  ${moment(item.date, "YYYY MM Do").format('LL')}`}
+                        </span>
 
-                    </span>
+                    }
+
                 </div>
             }
 
@@ -72,3 +81,6 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
         </li>
     )
 }
+
+// use epoch for claculating and sorting by time
+// use times useEffect to chech if oiverdue and display by how much

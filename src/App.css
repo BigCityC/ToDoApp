@@ -238,9 +238,14 @@ ul li input {
   /*design for list item date*/
 .date_item {
   font-size: 0.8em;
-  color: #9d9b9b;
   padding-right: 2rem;
   align-self: center;
+}
+.overdue {
+  color: red;
+}
+.ontime {
+  color: #9d9b9b;
 }
 /*design for edit button*/
 .edit{

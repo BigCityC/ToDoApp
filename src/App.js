@@ -5,16 +5,19 @@ import { v4 as uuidv4 } from 'uuid';
 import moment from "moment";
 
 
+const initForm = {
+    task: '',
+    date: moment().format("YYYY-MM-DD")
+}
 
 
 const LOCAL_STORAGE_KEY = 'todoApp.items'
 
 function App() {
     const [items, setItems] = useState([])
-    const [inputText, setInputText] = useState('')
     const [sort_asc, setSort] = useState(true)
-        //it has to be in this format for the input date to show up
-    const [date,setDate] = useState(moment().format("YYYY-MM-DD"))
+    const [form, setForm] = useState(initForm)
+    //it has to be in this format for the input date to show up
 
 
     useEffect(() => {
@@ -22,6 +25,7 @@ function App() {
         const storedItems = JSON.parse(data)
         if (storedItems) setItems(storedItems)
     }, [])
+
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
@@ -36,22 +40,21 @@ function App() {
         }
     }, [sort_asc])
 
-    function handleInput(event) {
-        setInputText(event.target.value)
-    }
+    function handleFormInput(event) {
+        const value = event.target.value
+        const name = event.target.name
 
-    function handleDateInput(event) {
-        setDate(event.target.value)
+        setForm({...form, [name]:value})
     }
 
 
     function addItems() {
-        if (inputText) {
-            const _items = [...items, {id: uuidv4(), value: inputText, date:date, complete: false}]
+        if (form.task) {
+            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, complete: false}]
             _items.sort((a, b) => a.value.localeCompare(b.value))
             if (!sort_asc) _items.reverse()
             setItems(_items)
-            setInputText( '')
+            setForm(initForm)
         } else {
             alert('Input cannot be blank, please try again.')
         }
@@ -94,10 +97,11 @@ function App() {
                     <input id="todolist-input"
                            placeholder="Input a Task Here..."
                            type="text"
-                           onChange={handleInput}
-                           value={inputText}
+                           onChange={handleFormInput}
+                           value={form.task}
+                           name='task'
                     />
-                    <input id="date-input" type="date" value={date} onChange={handleDateInput}/>
+                    <input id="date-input" type="date" value={form.date} name='date' onChange={handleFormInput}/>
                 </div>
                 <div className="input-buttons">
                     <span className="add btn" id="todoListAdd" onClick={addItems}>
@@ -117,7 +121,7 @@ function App() {
                        checkedItem={checkedItem}
                        setItems={setItems}
                        toggleSort={toggleSort}
-                       date={date}
+                       date={form.date}
             />
 
         </>

@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import moment from "moment";
 
 export default function ListItem({ item, items, setItems, checkedItem, removeItems, date}) {
     const [listText, setListText] = useState('')
@@ -19,6 +20,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 
     function handleDateChange(e) {
         setListDate(e.target.value)
+
     }
 
     function handleToggleComplete(id) {
@@ -52,7 +54,8 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                         {item.value}
                     </p>
                     <span className="date_item">
-                        {`Due:  ${item.date}`}
+                        {`Due:  ${moment(item.date, "YYYY MM Do").format('LL')}`}
+
                     </span>
                 </div>
             }

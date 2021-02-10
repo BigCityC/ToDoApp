@@ -13,6 +13,7 @@ function App() {
     const [items, setItems] = useState([])
     const [inputText, setInputText] = useState('')
     const [sort_asc, setSort] = useState(true)
+        //it has to be in this format for the input date to show up
     const [date,setDate] = useState(moment().format("YYYY-MM-DD"))
 
 

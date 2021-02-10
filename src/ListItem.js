@@ -1,27 +1,31 @@
 import React, {useState} from "react";
 import moment from "moment";
 
+
 export default function ListItem({ item, items, setItems, checkedItem, removeItems, date}) {
-    const [listText, setListText] = useState('')
+
+    const initForm = {
+        listText: item.value,
+        listDate: item.date
+    }
+
     const [editable, setIfEditable] = useState(false)
-    const [listDate, setListDate] = useState(date)
     const [overdue, setOverdue] = useState(false)
+    const [form, setForm] = useState(initForm)
+
 
     function editItems() {
         setIfEditable(!editable)
-        setListText(item.value)
-        setListDate(item.date)
+        item.value = form.listText
+        item.date = form.listDate
         handleToggleComplete(item.id)
     }
 
+    function handleListChange(event) {
+        const listText = event.target.value
+        const inputName = event.target.name
 
-    function handleInputChange(e) {
-        setListText(e.target.value)
-    }
-
-    function handleDateChange(e) {
-        setListDate(e.target.value)
-
+        setForm({...form, [inputName]: listText})
     }
 
     function handleToggleComplete(id) {
@@ -29,8 +33,8 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
             if (item.id === id) {
                 return {
                     ...item,
-                    value: listText,
-                    date: listDate,
+                    value: form.listText,
+                    date: form.listDate,
                 }
             } else {
                 return item
@@ -44,8 +48,8 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
             {item.complete && <i className="fas fa-check"/>}
             {editable ?
                 <div className="editable">
-                    <input type="text" value={listText} onChange={handleInputChange}/>
-                    <input className="date_input" id="date-input" type="date" value={listDate} onChange={handleDateChange}/>
+                    <input type="text" value={form.listText} name="listText" onChange={handleListChange}/>
+                    <input className="date_input" id="date-input" type="date" value={form.listDate} name="listDate" onChange={handleListChange}/>
                 </div>
 
                 :
@@ -54,7 +58,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                        onClick={() => {checkedItem(item.id)}}>
                         {item.value}
                     </p>
-                    {!overdue ?
+                    {overdue ?
                         <span className="overdue date_item">
                             {console.log(item.date)}
                             {`OverDue by ${item.date - moment()} days.`}

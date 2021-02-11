@@ -87,4 +87,4 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 }
 
 // use epoch for claculating and sorting by time
-// use times useEffect to chech if oiverdue and display by how much
+// use times useEffect to chech if overdue and display by how much

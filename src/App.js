@@ -50,7 +50,7 @@ function App() {
 
     function addItems() {
         if (form.task) {
-            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, complete: false}]
+            const _items = [...items, {id: uuidv4(), value: form.task, date: moment(form.date).valueOf(), overdue:false, complete: false}]
             _items.sort((a, b) => a.value.localeCompare(b.value))
             if (!sort_asc) _items.reverse()
             setItems(_items)

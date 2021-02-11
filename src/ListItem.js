@@ -1,46 +1,87 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import moment from "moment";
+import Pluralize from 'react-pluralize'
 
 
 export default function ListItem({ item, items, setItems, checkedItem, removeItems, date}) {
 
-    const initForm = {
-        listText: item.value,
-        listDate: item.date
-    }
+    // const initForm = {
+    //     listText: item.value,
+    //     listDate: item.date
+    // }
 
     const [editable, setIfEditable] = useState(false)
+    const [listText, setListText] = useState(item.value)
+    const [listDate, setListDate] = useState(date)
     const [overdue, setOverdue] = useState(false)
-    const [form, setForm] = useState(initForm)
+    // const [form, setForm] = useState(initForm)
 
+    useEffect(() => {
+        console.log('useEffect runs')
+        if (items.length) {
+            const _items = [...items]
+            const updatedList = _items.map((item) => {
+                if (item.date < moment().valueOf() && millisecondsToDays(item.date) !== 0) {
+                    return {
+                        ...item,
+                        overdue: true,
+                    }
+                } else {
+                    return item
+                }
+            })
+        setItems(updatedList)
+        }
+
+    },[])
 
     function editItems() {
         setIfEditable(!editable)
-        item.value = form.listText
-        item.date = form.listDate
+        // item.value = form.listText
+        // item.date = form.listDate
+        setListText(item.value)
+        setListDate(moment(item.date).valueOf())
+        console.log(item.value + ' ' + item.date)
         handleToggleComplete(item.id)
     }
 
-    function handleListChange(event) {
-        const listText = event.target.value
-        const inputName = event.target.name
-
-        setForm({...form, [inputName]: listText})
+    function handleInputChange(e) {
+        setListText(e.target.value)
     }
+
+    function handleDateChange(e) {
+        setListDate(e.target.value)
+
+    }
+    
+
+    // function handleInputChange(event) {
+    //     const value = event.target.value
+    //     const name = event.target.name
+    //
+    //     setForm({...form, [name]: value})
+    // }
 
     function handleToggleComplete(id) {
         const updatedList = items.map((item) => {
             if (item.id === id) {
                 return {
                     ...item,
-                    value: form.listText,
-                    date: form.listDate,
+                    // value: form.,
+                    // date: form.listDate,
+                    value: listText,
+                    date: listDate,
                 }
             } else {
                 return item
             }
         })
         setItems(updatedList)
+
+    }
+
+    function millisecondsToDays(date) {
+        return Math.floor(moment.duration(moment().valueOf()-moment(date).valueOf()).asDays())
     }
 
     return (
@@ -48,8 +89,10 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
             {item.complete && <i className="fas fa-check"/>}
             {editable ?
                 <div className="editable">
-                    <input type="text" value={form.listText} name="listText" onChange={handleListChange}/>
-                    <input className="date_input" id="date-input" type="date" value={form.listDate} name="listDate" onChange={handleListChange}/>
+                    <input type="text" value={listText} name="listText" onChange={handleInputChange}/>
+                    <input className="date_input" id="date-input" type="date" value={listDate} name="listDate" onChange={handleDateChange}/>
+                    {/*<input type="text" value={form.listText} name="listText" onChange={handleListChange}/>*/}
+                    {/*<input className="date_input" id="date-input" type="date" value={form.listDate} name="listDate" onChange={handleListChange}/>*/}
                 </div>
 
                 :
@@ -58,14 +101,15 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                        onClick={() => {checkedItem(item.id)}}>
                         {item.value}
                     </p>
-                    {overdue ?
+
+                    {item.overdue ?
                         <span className="overdue date_item">
-                            {console.log(item.date)}
-                            {`OverDue by ${item.date - moment()} days.`}
+                            Overdue by <Pluralize singular={'day'} count={millisecondsToDays(item.date)}/>
+
                         </span>
                     :
                         <span className="ontime date_item">
-                            {`Due:  ${moment(item.date, "YYYY MM Do").format('LL')}`}
+                            {`Due:  ${moment(item.date, "x").format("MMM Do YYYY")}`}
                         </span>
 
                     }

@@ -2,7 +2,7 @@ import React from "react";
 import ListItem from "./ListItem"
 
 
-export default function TodoList({items, checkedItem, removeItems, setItems, toggleSort, date }) {
+export default function TodoList({items, checkedItem, removeItems, setItems, toggleSort}) {
 
 
     return (
@@ -19,7 +19,6 @@ export default function TodoList({items, checkedItem, removeItems, setItems, tog
                         checkedItem={checkedItem}
                         removeItems={removeItems}
                         setItems={setItems}
-                        date={date}
                     />
                 ))}
             </ul>

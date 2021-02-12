@@ -3,7 +3,7 @@ import moment from "moment";
 import Pluralize from 'react-pluralize'
 
 
-export default function ListItem({ item, items, setItems, checkedItem, removeItems, date}) {
+export default function ListItem({ item, items, setItems, checkedItem, removeItems}) {
 
     // const initForm = {
     //     listText: item.value,
@@ -12,35 +12,23 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 
     const [editable, setIfEditable] = useState(false)
     const [listText, setListText] = useState(item.value)
-    const [listDate, setListDate] = useState(date)
-    const [overdue, setOverdue] = useState(false)
+    const [listDate, setListDate] = useState(item.date)
+    const [overdue, setOverdue] = useState(checkOverdue())
     // const [form, setForm] = useState(initForm)
 
-    useEffect(() => {
-        console.log('useEffect runs')
-        if (items.length) {
-            const _items = [...items]
-            const updatedList = _items.map((item) => {
-                if (item.date < moment().valueOf() && millisecondsToDays(item.date) !== 0) {
-                    return {
-                        ...item,
-                        overdue: true,
-                    }
-                } else {
-                    return item
-                }
-            })
-        setItems(updatedList)
-        }
-
-    },[])
+    function checkOverdue() {
+        const result = moment().diff(moment(item.date), 'days')
+        console.log(result)
+        return (result > 0)
+    }
 
     function editItems() {
         setIfEditable(!editable)
         // item.value = form.listText
         // item.date = form.listDate
         setListText(item.value)
-        setListDate(moment(item.date).valueOf())
+        setListDate(item.date)
+        setOverdue(checkOverdue())
         console.log('item.value: ' + item.value + ' ' + item.date)
         console.log('listitem: ' + listText + ' ' + listDate)
         handleToggleComplete(item.id)
@@ -103,14 +91,14 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                         {item.value}
                     </p>
 
-                    {item.overdue ?
+                    {(overdue) ?
                         <span className="overdue date_item">
                             Overdue by <Pluralize singular={'day'} count={millisecondsToDays(item.date)}/>
 
                         </span>
                     :
                         <span className="ontime date_item">
-                            {`Due:  ${moment(item.date, "x").format("MMM Do YYYY")}`}
+                            {`Due:  ${moment(item.date).format("MMM Do YYYY")}`}
                         </span>
 
                     }
@@ -131,5 +119,6 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
     )
 }
 
-// use epoch for claculating and sorting by time
-// use times useEffect to chech if overdue and display by how much
+//sorting by date
+//change overdue to
+//change out moment with the other one

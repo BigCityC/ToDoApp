@@ -41,7 +41,8 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
         // item.date = form.listDate
         setListText(item.value)
         setListDate(moment(item.date).valueOf())
-        console.log(item.value + ' ' + item.date)
+        console.log('item.value: ' + item.value + ' ' + item.date)
+        console.log('listitem: ' + listText + ' ' + listDate)
         handleToggleComplete(item.id)
     }
 

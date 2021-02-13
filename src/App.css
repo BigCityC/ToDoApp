@@ -54,6 +54,35 @@ header {
   margin: 0 auto;
   width: 80%;
   align-items: flex-end;
+  border: 2px solid;
+  position: relative;
+}
+.sort-button {
+  border-radius: 1rem;
+  padding: 0.5rem 1.5rem;
+  position: absolute;
+  background: linear-gradient(
+          to right top,
+          rgba(235, 142, 30,0.9),
+          rgba(235, 142, 30,0.5));
+  cursor: pointer;
+  -webkit-box-shadow: var(--box-shadow-specs);
+  -moz-box-shadow: var(--box-shadow-specs);
+  box-shadow: var(--box-shadow-specs);
+}
+.sort-button:hover {
+  background: linear-gradient(
+          to right top,
+          rgba(235, 130, 0,0.9),
+          rgba(235, 130, 0,0.5));
+}
+
+.date {
+  left: 1em;
+}
+
+.name {
+  right: 1em;
 }
 
 .input-text {
@@ -62,11 +91,6 @@ header {
   flex: 3;
 
 }
-
-/*.input-text input {*/
-/*  width: 400px;*/
-/*  height: 35px;*/
-/*}*/
 
 #todolist-input {
   flex: 3;
@@ -136,35 +160,6 @@ ul {
   width: 100%;
   margin: 0 auto;
 
-}
-
-.sort-button {
-  border-radius: 1rem;
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1.5rem;
-  background: linear-gradient(
-          to right top,
-          rgba(235, 142, 30,0.9),
-          rgba(235, 142, 30,0.5));
-  cursor: pointer;
-  -webkit-box-shadow: var(--box-shadow-specs);
-  -moz-box-shadow: var(--box-shadow-specs);
-  box-shadow: var(--box-shadow-specs);
-}
-@media only screen and (min-width: 992px) {
-  .sort-button {
-    top: 1rem;
-    right: 2rem;
-    padding: 1rem 1.5rem;
-  }
-}
-.sort-button:hover {
-  background: linear-gradient(
-          to right top,
-          rgba(235, 130, 0,0.9),
-          rgba(235, 130, 0,0.5));
 }
 
 /*LISTITEM.JS STYLING*/

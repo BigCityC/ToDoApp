@@ -8,9 +8,6 @@ export default function TodoList({items, checkedItem, removeItems, setItems, tog
     return (
         <main>
             <ul id="myUL">
-                <span className="sort-button" onClick={toggleSort}>
-                    <i className="fas fa-sort fa-2x"/>
-                </span>
                 {items.map((item, index) => (
                     <ListItem
                         key={index}

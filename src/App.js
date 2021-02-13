@@ -93,6 +93,12 @@ function App() {
             <header>
                 <h2 className="app-title">Todo List</h2>
                 <div className="wrapper">
+                    <span className="date sort-button">
+                        <i className="fas fa-clock fa-2x"/>
+                    </span>
+                    <span className="name sort-button" onClick={toggleSort}>
+                        <i className="fas fa-sort fa-2x"/>
+                    </span>
                 <div className="input-text">
                     <input id="todolist-input"
                            placeholder="Input a Task Here..."

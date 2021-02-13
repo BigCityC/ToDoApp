@@ -47,12 +47,44 @@ function App() {
         setForm({...form, [name]:value})
     }
 
+    // function checkOverdue() {
+    //     if (items.length > 0) {
+    //         const _items = [...items]
+    //         let i;
+    //         const updatedList = _items.map((item) => {
+    //             const _items = [...items, {}]
+    //             const result = moment().diff(moment(_items[i].date), 'days')
+    //             return (result)
+    //         })
+    //
+    //
+    //     }
+    //
+    // }
+
+    // function checkOverdue() {
+    //     const _items = [...items]
+    //     const updatedList = _items.map((item) => {
+    //         if (item.overdue > 0) {
+    //             return {
+    //                 ...item,
+    //                 overdue: moment().diff(moment(item.date), 'days'),
+    //             }
+    //         } else {
+    //             return item
+    //         }
+    //     })
+    //     setItems(updatedList)
+    // }
+
+
 
     function addItems() {
         if (form.task) {
-            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, overdue:false, complete: false}]
+            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date,overdue: moment(form.date).diff(moment(), 'days'), complete: false}]
             _items.sort((a, b) => a.value.localeCompare(b.value))
             if (!sort_asc) _items.reverse()
+            // checkOverdue()
             setItems(_items)
             setForm(initForm)
         } else {
@@ -127,6 +159,7 @@ function App() {
                        checkedItem={checkedItem}
                        setItems={setItems}
                        toggleSort={toggleSort}
+
 
             />
 

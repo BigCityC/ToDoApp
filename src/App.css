@@ -54,7 +54,6 @@ header {
   margin: 0 auto;
   width: 80%;
   align-items: flex-end;
-  border: 2px solid;
   position: relative;
 }
 .sort-button {

@@ -11,20 +11,19 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
     }
 
     const [editable, setIfEditable] = useState(false)
-    const [overdue, setOverdue] = useState(item.overdue)
+    // const [overdue, setOverdue] = useState(item.overdue)
     const [form, setForm] = useState(initForm)
 
-    function checkOverdue() {
-        const result = moment().diff(moment(item.date), 'days')
-        console.log(`result: ${result}`)
-        return (result)
-    }
+    // function checkOverdue() {
+    //     const result = moment().diff(moment(item.date), 'days')
+    //     console.log(`result: ${result}`)
+    //     return (result)
+    // }
 
     function editItems() {
         setIfEditable(!editable)
         item.value = form.listText
         item.date = form.listDate
-        setOverdue(checkOverdue())
         handleToggleComplete(item.id)
     }
 
@@ -42,6 +41,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                     ...item,
                     value: form.listText,
                     date: form.listDate,
+                    overdue: moment(item.date).diff(moment(), 'days'),
                 }
             } else {
                 return item

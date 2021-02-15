@@ -15,8 +15,8 @@ const LOCAL_STORAGE_KEY = 'todoApp.items'
 
 function App() {
     const [items, setItems] = useState([])
-    const [sortNameToggle, setNameSortToggle] = useState(true)
-    const [sortDateToggle, setDateSortToggle] = useState(true)
+    const [sortAsc, setSortAsc] = useState(true)
+    const [sortBy, setSortBy] = useState('date')
     const [form, setForm] = useState(initForm)
 
 
@@ -31,14 +31,22 @@ function App() {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
     }, [items])
 
-    // useEffect(() => {
-    //     if (items.length) {
-    //         const _items = [...items]
-    //         _items.sort((a, b) => a.value.localeCompare(b.value))
-    //         if (!sort_asc) _items.reverse()
-    //         setItems(_items)
-    //     }
-    // }, [sort_as])
+    useEffect(() => {
+        if (items.length) {
+            const _items = [...items]
+            if (sortBy === 'date') {
+                _items.sort((a, b) => a.overdue-b.overdue)
+            }
+            else if (sortBy === 'name') {
+                _items.sort((a, b) => a.value.localeCompare(b.value))
+            }
+
+            if (!sortAsc) {
+                _items.reverse()
+            }
+            setItems(_items)
+        }
+    }, [sortBy, sortAsc])
 
     function handleFormInput(event) {
         const value = event.target.value
@@ -77,29 +85,14 @@ function App() {
             setItems(newTodos)
     }
 
-    function sortByName() {
-        const _items = [...items]
-        let updatedList;
-        if (sortNameToggle) {
-            updatedList = _items.sort((a, b) => a.value.localeCompare(b.value))
-            } else {
-                updatedList = _items.reverse()
-            }
-        setNameSortToggle(!sortNameToggle)
-        setItems(updatedList)
-        }
 
-
-    function sortByDate() {
-        const _items = [...items]
-        let updatedList;
-        if (sortDateToggle) {
-            updatedList = _items.sort((a, b) => a.overdue-b.overdue)
+    function sortList(by) {
+        if (sortBy === by) {
+            setSortAsc(!sortAsc)
         } else {
-            updatedList = _items.sort((a, b) => b.overdue-a.overdue)
+            setSortBy(by)
+            setSortAsc(true)
         }
-        setDateSortToggle(!sortDateToggle);
-        setItems(updatedList)
     }
 
 
@@ -108,10 +101,14 @@ function App() {
             <header>
                 <h2 className="app-title">Todo List</h2>
                 <div className="wrapper">
-                    <span className="date sort-button" onClick={sortByDate}>
+                    <span className="date sort-button" onClick={() => {
+                        sortList('date')
+                    }}>
                         <i className="fas fa-clock fa-2x"/>
                     </span>
-                    <span className="name sort-button" onClick={sortByName}>
+                    <span className="name sort-button" onClick={() => {
+                        sortList('name')
+                    }}>
                         <i className="fas fa-sort fa-2x"/>
                     </span>
                 <div className="input-text">

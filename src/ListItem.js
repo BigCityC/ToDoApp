@@ -87,3 +87,5 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 
 //sorting by date
 //change overdue to days
+//each component has its own JS and CSS code.
+//

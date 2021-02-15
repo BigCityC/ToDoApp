@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import moment from "moment";
+import ListItem from "./ListItem";
 
 
 const initForm = {
@@ -133,13 +134,20 @@ function App() {
                 </div>
             </header>
 
-
-            <TodoList  items={items}
-                       removeItems={removeItems}
-                       checkedItem={checkedItem}
-                       setItems={setItems}
-            />
-
+            <main>
+                <ul id="myUL">
+                    {items.map((item, index) => (
+                        <ListItem
+                            key={index}
+                            item={item}
+                            items={items}
+                            checkedItem={checkedItem}
+                            removeItems={removeItems}
+                            setItems={setItems}
+                        />
+                    ))}
+                </ul>
+            </main>
         </>
 
     )

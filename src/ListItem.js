@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
+import './ListItem.css';
 import moment from "moment";
 import Pluralize from 'react-pluralize'
 
@@ -54,8 +55,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 
                 :
                 <div className="not_editable">
-                    <p className={item.complete ? "checked" : ""}
-                       onClick={() => {checkedItem(item.id)}}>
+                    <p className={item.complete ? "checked" : ""} onClick={() => {checkedItem(item.id)}}>
                         {item.value}
                     </p>
 
@@ -72,20 +72,12 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                 </div>
             }
 
-
-            <span className="edit" onClick={() => {
-                editItems()
-            }}>
+            <span className="edit" onClick={() => editItems()}>
                 <i className="fas fa-edit"/>
             </span>
-                <span className="delete" onClick={() => {removeItems(item)}}>
-                 <i className="fas fa-times"/>
-             </span>
+            <span className="delete" onClick={() => {removeItems(item)}}>
+                <i className="fas fa-times"/>
+            </span>
         </li>
     )
 }
-
-//sorting by date
-//change overdue to days
-//each component has its own JS and CSS code.
-//

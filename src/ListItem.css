@@ -1,0 +1,103 @@
+/* list items design */
+ul li {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem auto;
+    background-color: white;
+    font-size: 18px;
+    height: 3em;
+    padding-left: 5px;
+    width: 75%;
+    -webkit-box-shadow: var(--box-shadow-specs);
+    -moz-box-shadow: var(--box-shadow-specs);
+    box-shadow: var(--box-shadow-specs);
+}
+/* did i need to make the text under a p tag to alter it */
+ul li p {
+    flex: 1;
+    align-self: center;
+    font-family: Roboto, sans-serif;
+    margin-left: 2px;
+}
+/* line through when a li has the "checked" class */
+p.checked{
+    text-decoration: line-through;
+}
+
+.editable {
+    display: flex;
+    justify-content:space-between;
+    flex: 1;
+}
+
+.editable input[type="text"] {
+    flex: 4;
+}
+
+.editable input[type="date"] {
+    flex: 1;
+}
+
+.date_input {
+    font-size: 0.8em;
+    color: #9d9b9b;
+}
+
+.not_editable {
+    display: flex;
+    flex: 1;
+}
+.fa-check {
+    flex: 0 0 20px;
+    align-self: center;
+    padding-left: 5px;
+}
+
+ul li input {
+    flex: 1;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    margin-left: 5px;
+    height: 25px;
+    align-self: center;
+    outline-color: #a09f9f;
+}
+
+
+/*design for list item date*/
+.date_item {
+    font-size: 0.8em;
+    padding-right: 2rem;
+    align-self: center;
+}
+.overdue {
+    color: red;
+}
+.ontime {
+    color: #9d9b9b;
+}
+/*design for edit button*/
+.edit{
+    background-color: #80f151;
+    flex: 0 0 50px;
+    cursor: pointer;
+    position: relative;
+}
+.fa-edit {
+    position:absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+/*design for delete button*/
+.delete {
+    background-color: #ff3333;
+    flex: 0 0 50px;
+    cursor: pointer;
+    position: relative;
+}
+.fa-times {
+    position:absolute;
+    top: 1rem;
+    left: 1rem;
+}

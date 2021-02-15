@@ -11,14 +11,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
     }
 
     const [editable, setIfEditable] = useState(false)
-    // const [overdue, setOverdue] = useState(item.overdue)
     const [form, setForm] = useState(initForm)
-
-    // function checkOverdue() {
-    //     const result = moment().diff(moment(item.date), 'days')
-    //     console.log(`result: ${result}`)
-    //     return (result)
-    // }
 
     function editItems() {
         setIfEditable(!editable)
@@ -30,7 +23,6 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
     function handleInputChange(event) {
         const value = event.target.value
         const name = event.target.name
-
         setForm({...form, [name]: value})
     }
 
@@ -49,10 +41,6 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
         })
         setItems(updatedList)
 
-    }
-
-    function millisecondsToDays(date) {
-        return Math.floor(moment.duration(moment().valueOf()-moment(date).valueOf()).asDays())
     }
 
     return (
@@ -74,13 +62,11 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                     {(item.overdue < 0) ?
                         <span className="overdue date_item">
                             Overdue by <Pluralize singular={'day'} count={Math.abs(item.overdue)}/>
-
                         </span>
                     :
                         <span className="ontime date_item">
                             {`Due:  ${moment(item.date).format("MMM Do YYYY")}`}
                         </span>
-
                     }
 
                 </div>
@@ -101,5 +87,3 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 
 //sorting by date
 //change overdue to days
-//--> remaining problems .... the positive overdue days are a day off. this needs to be accurate for sorting reasons.
-//change out moment with the other one

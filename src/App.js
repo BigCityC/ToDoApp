@@ -15,9 +15,9 @@ const LOCAL_STORAGE_KEY = 'todoApp.items'
 
 function App() {
     const [items, setItems] = useState([])
-    const [sort_asc, setSort] = useState(true)
+    const [sortNameToggle, setNameSortToggle] = useState(true)
+    const [sortDateToggle, setDateSortToggle] = useState(true)
     const [form, setForm] = useState(initForm)
-    //it has to be in this format for the input date to show up
 
 
     useEffect(() => {
@@ -31,60 +31,25 @@ function App() {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
     }, [items])
 
-    useEffect(() => {
-        if (items.length) {
-            const _items = [...items]
-            _items.sort((a, b) => a.value.localeCompare(b.value))
-            if (!sort_asc) _items.reverse()
-            setItems(_items)
-        }
-    }, [sort_asc])
+    // useEffect(() => {
+    //     if (items.length) {
+    //         const _items = [...items]
+    //         _items.sort((a, b) => a.value.localeCompare(b.value))
+    //         if (!sort_asc) _items.reverse()
+    //         setItems(_items)
+    //     }
+    // }, [sort_as])
 
     function handleFormInput(event) {
         const value = event.target.value
         const name = event.target.name
-
         setForm({...form, [name]:value})
     }
-
-    // function checkOverdue() {
-    //     if (items.length > 0) {
-    //         const _items = [...items]
-    //         let i;
-    //         const updatedList = _items.map((item) => {
-    //             const _items = [...items, {}]
-    //             const result = moment().diff(moment(_items[i].date), 'days')
-    //             return (result)
-    //         })
-    //
-    //
-    //     }
-    //
-    // }
-
-    // function checkOverdue() {
-    //     const _items = [...items]
-    //     const updatedList = _items.map((item) => {
-    //         if (item.overdue > 0) {
-    //             return {
-    //                 ...item,
-    //                 overdue: moment().diff(moment(item.date), 'days'),
-    //             }
-    //         } else {
-    //             return item
-    //         }
-    //     })
-    //     setItems(updatedList)
-    // }
-
 
 
     function addItems() {
         if (form.task) {
             const _items = [...items, {id: uuidv4(), value: form.task, date: form.date,overdue: moment(form.date).diff(moment(), 'days'), complete: false}]
-            _items.sort((a, b) => a.value.localeCompare(b.value))
-            if (!sort_asc) _items.reverse()
-            // checkOverdue()
             setItems(_items)
             setForm(initForm)
         } else {
@@ -92,23 +57,16 @@ function App() {
         }
     }
 
-    function toggleSort() {
-        setSort(!sort_asc)
-    }
-
     function removeItems(item) {
         setItems(items.filter(removedItem => removedItem !== item))
 
     }
-
 
     function clearItems() {
         setItems([])
     }
 
     function checkedItem(id) {
-        //have copy of current todoslist
-
             const newTodos = items.map((item) => {
                 if (item.id !== id) {
                     return item
@@ -117,18 +75,43 @@ function App() {
                 }
             })
             setItems(newTodos)
-
     }
+
+    function sortByName() {
+        const _items = [...items]
+        let updatedList;
+        if (sortNameToggle) {
+            updatedList = _items.sort((a, b) => a.value.localeCompare(b.value))
+            } else {
+                updatedList = _items.reverse()
+            }
+        setNameSortToggle(!sortNameToggle)
+        setItems(updatedList)
+        }
+
+
+    function sortByDate() {
+        const _items = [...items]
+        let updatedList;
+        if (sortDateToggle) {
+            updatedList = _items.sort((a, b) => a.overdue-b.overdue)
+        } else {
+            updatedList = _items.sort((a, b) => b.overdue-a.overdue)
+        }
+        setDateSortToggle(!sortDateToggle);
+        setItems(updatedList)
+    }
+
 
     return (
         <>
             <header>
                 <h2 className="app-title">Todo List</h2>
                 <div className="wrapper">
-                    <span className="date sort-button">
+                    <span className="date sort-button" onClick={sortByDate}>
                         <i className="fas fa-clock fa-2x"/>
                     </span>
-                    <span className="name sort-button" onClick={toggleSort}>
+                    <span className="name sort-button" onClick={sortByName}>
                         <i className="fas fa-sort fa-2x"/>
                     </span>
                 <div className="input-text">
@@ -158,9 +141,6 @@ function App() {
                        removeItems={removeItems}
                        checkedItem={checkedItem}
                        setItems={setItems}
-                       toggleSort={toggleSort}
-
-
             />
 
         </>

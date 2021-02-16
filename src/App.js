@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react'
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import moment from "moment";
+import { FaPlus, FaTrashAlt, FaSort, FaClock } from 'react-icons/fa';
 import ListItem from "./ListItem";
 
 
@@ -17,7 +18,7 @@ const LOCAL_STORAGE_KEY = 'todoApp.items'
 function App() {
     const [items, setItems] = useState([])
     const [sortAsc, setSortAsc] = useState(true)
-    const [sortBy, setSortBy] = useState('date')
+    const [sortBy, setSortBy] = useState('')
     const [form, setForm] = useState(initForm)
 
 
@@ -102,15 +103,15 @@ function App() {
             <header>
                 <h2 className="app-title">Todo List</h2>
                 <div className="wrapper">
-                    <span className="date sort-button" onClick={() => {
+                    <span className={sortBy === 'date' ? "sort-button date sort-button-selected": "sort-button date"} onClick={() => {
                         sortList('date')
                     }}>
-                        <i className="fas fa-clock fa-2x"/>
+                        <FaClock size={30} />
                     </span>
-                    <span className="name sort-button" onClick={() => {
+                    <span className={sortBy === 'name' ? "sort-button name sort-button-selected": "sort-button name"} onClick={() => {
                         sortList('name')
                     }}>
-                        <i className="fas fa-sort fa-2x"/>
+                        <FaSort size={30}/>
                     </span>
                 <div className="input-text">
                     <input id="todolist-input"
@@ -123,13 +124,13 @@ function App() {
                     <input id="date-input" type="date" value={form.date} name='date' onChange={handleFormInput}/>
                 </div>
                 <div className="input-buttons">
-                    <span className="add btn" id="todoListAdd" onClick={addItems}>
-                        <p><i className="fas fa-plus"/>Add</p>
+                    <span className="add" title="Add" onClick={addItems}>
+                        <FaPlus className="btn" />
+                    </span>
+                    <span className="clear" title="Clear All" onClick={clearItems}>
+                        <FaTrashAlt className="btn"/>
                     </span>
 
-                    <span className="clear btn" id="todoListClear" onClick={clearItems}>
-                        <p><i className="fas fa-eraser"/>Clear All</p>
-                    </span>
                 </div>
                 </div>
             </header>
@@ -155,3 +156,11 @@ function App() {
 
 
 export default App;
+
+// <span className="add btn" id="todoListAdd" onClick={addItems}>
+//                         <p><i className="fas fa-plus"/>Add</p>
+//                     </span>
+//
+// <span className="clear btn" id="todoListClear" onClick={clearItems}>
+//                         <p><i className="fas fa-eraser"/>Clear All</p>
+//                     </span>

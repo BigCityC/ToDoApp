@@ -75,6 +75,11 @@ header {
           rgba(235, 130, 0,0.9),
           rgba(235, 130, 0,0.5));
 }
+.sort-button-selected{
+  -webkit-box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
+  -moz-box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
+  box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
+}
 
 .date {
   left: 1em;
@@ -105,32 +110,26 @@ header {
 .input-buttons {
   display: flex;
   justify-content:space-around;
-  flex: 1;
   margin-top: 1rem;
-
+  align-items: flex-end;
+  height: 3em;
 }
 
 .btn {
-  border-radius:5%;
+  border-radius: 5%;
   font-weight: bold;
-  text-align: center;
   flex-shrink: 0;
-  max-height: 30px;
+  max-height: 20px;
+  padding: 0.4em;
 }
 .btn:hover {
   cursor: pointer;
-}
-.btn p {
-  display: flex;
-  flex-shrink: 0;
-  padding: 0 10px;
 }
 
 /*color and hover for add button*/
 .add {
   background-color: #8f8f8f;
-  align-self: center;
-  padding: 8px 0;
+  padding: 0 2em;
 
 }
 .add:hover {
@@ -140,8 +139,7 @@ header {
 /*color and hover for clear button*/
 .clear {
   background-color: #f1f140;
-  align-self: center;
-  padding: 8px 0;
+  padding: 0 2em;
 }
 .clear:hover {
   background-color: #f5f56b;

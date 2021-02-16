@@ -47,7 +47,7 @@ p.checked{
     display: flex;
     flex: 1;
 }
-.fa-check {
+.list-check {
     flex: 0 0 20px;
     align-self: center;
     padding-left: 5px;
@@ -76,28 +76,30 @@ ul li input {
 .ontime {
     color: #9d9b9b;
 }
-/*design for edit button*/
-.edit{
-    background-color: #80f151;
-    flex: 0 0 50px;
+
+.list-buttons {
+    display: flex;
     cursor: pointer;
-    position: relative;
+    height: 3em;
+    align-items: center;
+    width: 20vh;
+    /*width: 10 when small*/
 }
-.fa-edit {
-    position:absolute;
-    top: 1rem;
-    left: 1rem;
+/*design for edit button*/
+.list-edit{
+    background-color: #80f151;
+    flex: 1;
+    padding-top:1em;
+    padding-bottom: 1em;
+
 }
 
-/*design for delete button*/
-.delete {
+
+/*!*design for delete button*!*/
+.list-delete {
     background-color: #ff3333;
-    flex: 0 0 50px;
-    cursor: pointer;
-    position: relative;
+    flex: 1;
+    padding-top:1em;
+    padding-bottom: 1em;
 }
-.fa-times {
-    position:absolute;
-    top: 1rem;
-    left: 1rem;
-}
+

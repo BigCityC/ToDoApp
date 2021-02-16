@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import './ListItem.css';
 import moment from "moment";
+import { FaCheck, FaEraser, FaEdit } from 'react-icons/fa';
 import Pluralize from 'react-pluralize'
 
 
@@ -46,7 +47,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 
     return (
         <li key={item.id}>
-            {item.complete && <i className="fas fa-check"/>}
+            {item.complete && <FaCheck className="list-check"/>}
             {editable ?
                 <div className="editable">
                     <input type="text" value={form.listText} name="listText" onChange={handleInputChange}/>
@@ -71,13 +72,13 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 
                 </div>
             }
+            <div className="list-buttons">
+                <FaEdit className="list-edit" title="Edit" onClick={() => editItems()} />
+                <FaEraser className="list-delete" title="Delete" onClick={() => {removeItems(item)}} />
+            </div>
 
-            <span className="edit" onClick={() => editItems()}>
-                <i className="fas fa-edit"/>
-            </span>
-            <span className="delete" onClick={() => {removeItems(item)}}>
-                <i className="fas fa-times"/>
-            </span>
+
+
         </li>
     )
 }

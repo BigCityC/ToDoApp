@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './ListItem.css';
-import moment from "moment";
+import {differenceInDays, format} from 'date-fns';
 import { FaCheck, FaEraser, FaEdit } from 'react-icons/fa';
 import Pluralize from 'react-pluralize'
 
@@ -35,7 +35,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                     ...item,
                     value: form.listText,
                     date: form.listDate,
-                    overdue: moment(item.date).diff(moment(), 'days'),
+                    overdue: differenceInDays(new Date(item.date), new Date()),
                 }
             } else {
                 return item
@@ -66,7 +66,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                         </span>
                     :
                         <span className="ontime date_item">
-                            {`Due:  ${moment(item.date).format("MMM Do YYYY")}`}
+                            {`Due:  ${format(new Date(), "MMM do, yyyy")}`}
                         </span>
                     }
 

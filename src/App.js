@@ -2,17 +2,17 @@ import TodoList from './TodoList';
 import React, {useState, useEffect} from 'react'
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
-import moment from "moment";
+import {format, differenceInDays} from 'date-fns';
 import { FaPlus, FaTrashAlt, FaSort, FaClock } from 'react-icons/fa';
 import ListItem from "./ListItem";
 
 
 const initForm = {
     task: '',
-    date: moment().format("YYYY-MM-DD")
+    date: format(new Date(), 'yyyy-MM-dd')
 }
 
-
+console.log(initForm)
 const LOCAL_STORAGE_KEY = 'todoApp.items'
 
 function App() {
@@ -59,7 +59,7 @@ function App() {
 
     function addItems() {
         if (form.task) {
-            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date,overdue: moment(form.date).diff(moment(), 'days'), complete: false}]
+            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, overdue: differenceInDays(new Date(form.date), new Date()), complete: false}]
             setItems(_items)
             setForm(initForm)
         } else {
@@ -156,11 +156,3 @@ function App() {
 
 
 export default App;
-
-// <span className="add btn" id="todoListAdd" onClick={addItems}>
-//                         <p><i className="fas fa-plus"/>Add</p>
-//                     </span>
-//
-// <span className="clear btn" id="todoListClear" onClick={clearItems}>
-//                         <p><i className="fas fa-eraser"/>Clear All</p>
-//                     </span>

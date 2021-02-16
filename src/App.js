@@ -1,4 +1,3 @@
-import TodoList from './TodoList';
 import React, {useState, useEffect} from 'react'
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
@@ -113,41 +112,43 @@ function App() {
                     }}>
                         <FaSort size={30}/>
                     </span>
-                <div className="input-text">
-                    <input id="todolist-input"
-                           placeholder="Input a Task Here..."
-                           type="text"
-                           onChange={handleFormInput}
-                           value={form.task}
-                           name='task'
-                    />
-                    <input id="date-input" type="date" value={form.date} name='date' onChange={handleFormInput}/>
-                </div>
-                <div className="input-buttons">
-                    <span className="add" title="Add" onClick={addItems}>
-                        <FaPlus className="btn" />
-                    </span>
-                    <span className="clear" title="Clear All" onClick={clearItems}>
-                        <FaTrashAlt className="btn"/>
-                    </span>
+                <div className="input-wrapper">
+                    <div className="input-bar">
+                        <input id="todolist-input"
+                               placeholder="Input a Task Here..."
+                               type="text"
+                               onChange={handleFormInput}
+                               value={form.task}
+                               name='task'
+                        />
+                        <input id="date-input" type="date" value={form.date} name='date' onChange={handleFormInput}/>
+                    </div>
+                    <div className="input-buttons">
+                        <span className="add" title="Add" onClick={addItems}>
+                            <FaPlus className="btn" />
+                        </span>
+                        <span className="clear" title="Clear All" onClick={clearItems}>
+                            <FaTrashAlt className="btn"/>
+                        </span>
 
+                    </div>
                 </div>
                 </div>
             </header>
 
             <main>
-                <ul id="myUL">
-                    {items.map((item, index) => (
-                        <ListItem
-                            key={index}
-                            item={item}
-                            items={items}
-                            checkedItem={checkedItem}
-                            removeItems={removeItems}
-                            setItems={setItems}
-                        />
-                    ))}
-                </ul>
+                    <ul>
+                        {items.map((item, index) => (
+                            <ListItem
+                                key={index}
+                                item={item}
+                                items={items}
+                                checkedItem={checkedItem}
+                                removeItems={removeItems}
+                                setItems={setItems}
+                            />
+                        ))}
+                    </ul>
             </main>
         </>
 

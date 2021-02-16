@@ -10,7 +10,6 @@
 
 @media only screen and (max-width: 955px) {
   .wrapper {
-    display: flex;
     flex-direction: column;
   }
 
@@ -24,20 +23,21 @@
   }
 }
 
-/* sets background color */
-body {
-  /*background-image: url("./bush.png");*/
-  /*opacity: 50%;*/
-  background: linear-gradient(to right top, #D4DAFF, #D9DAFF);
-}
-
 /*VARIABLES*/
 :root {
   --box-shadow-specs: 10px 10px 16px -13px rgba(0,0,0,1);
 }
 
+body {
+  background: url("./background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 header {
-  background-color: #B063F2;
+  background: linear-gradient(45deg, rgba(98,52,247,1) 0%, rgba(211,93,240,1) 60%, rgba(214,12,245,1) 99%, rgba(176,99,242,1) 100%);
   padding: 15px;
 }
 
@@ -55,6 +55,7 @@ header {
   width: 80%;
   align-items: flex-end;
   position: relative;
+  border: 1px solid;
 }
 .sort-button {
   border-radius: 1rem;
@@ -89,10 +90,15 @@ header {
   right: 1em;
 }
 
-.input-text {
+.input-wrapper {
+  border: 2px solid yellow;
+  width: 80%;
+}
+
+.input-bar {
   display: flex;
   height: 2em;
-  flex: 3;
+  flex-grow: 1;
 
 }
 
@@ -149,7 +155,9 @@ header {
 main {
   display: flex;
   flex-direction: column;
+  /*background: linear-gradient(to right top, #D4DAFF, #D9DAFF);*/
 }
+
 
 ul {
   display: flex;

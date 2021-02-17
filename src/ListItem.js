@@ -5,6 +5,7 @@ import { FaCheck, FaEraser, FaEdit } from 'react-icons/fa';
 import Pluralize from 'react-pluralize'
 
 
+
 export default function ListItem({ item, items, setItems, checkedItem, removeItems}) {
 
     const initForm = {

@@ -17,7 +17,7 @@ const LOCAL_STORAGE_KEY = 'todoApp.items'
 function App() {
     const [items, setItems] = useState([])
     const [sortAsc, setSortAsc] = useState(true)
-    const [sortBy, setSortBy] = useState('')
+    const [sortBy, setSortBy] = useState('date')
     const [form, setForm] = useState(initForm)
 
 
@@ -100,14 +100,17 @@ function App() {
     return (
         <>
             <header>
-                <h2 className="app-title">Todo List</h2>
+                <h2 className="title">Todo List</h2>
+                <span className="clear" title="Clear All" onClick={clearItems}>
+                    <FaTrashAlt size={20}/>
+                </span>
                 <div className="wrapper">
-                    <span className={sortBy === 'date' ? "sort-button date sort-button-selected": "sort-button date"} onClick={() => {
+                    <span className={`sort-button date ${sortBy === 'date' && "highlight"}`} onClick={() => {
                         sortList('date')
                     }}>
                         <FaClock size={30} />
                     </span>
-                    <span className={sortBy === 'name' ? "sort-button name sort-button-selected": "sort-button name"} onClick={() => {
+                    <span className={`sort-button name ${sortBy === 'name' && "highlight"}`} onClick={() => {
                         sortList('name')
                     }}>
                         <FaSort size={30}/>
@@ -125,12 +128,8 @@ function App() {
                     </div>
                     <div className="input-buttons">
                         <span className="add" title="Add" onClick={addItems}>
-                            <FaPlus className="btn" />
+                            <FaPlus size={20}/>
                         </span>
-                        <span className="clear" title="Clear All" onClick={clearItems}>
-                            <FaTrashAlt className="btn"/>
-                        </span>
-
                     </div>
                 </div>
                 </div>

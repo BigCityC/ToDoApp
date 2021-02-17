@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 /* list items design */
 ul li {
     display: flex;
@@ -5,7 +12,7 @@ ul li {
     margin: 1rem auto;
     background-color: white;
     font-size: 18px;
-    height: 3em;
+    height: 5vh;
     padding-left: 5px;
     width: 75%;
     -webkit-box-shadow: var(--box-shadow-specs);
@@ -16,7 +23,6 @@ ul li {
 ul li p {
     flex: 1;
     align-self: center;
-    font-family: Roboto, sans-serif;
     margin-left: 2px;
 }
 /* line through when a li has the "checked" class */

@@ -12,7 +12,7 @@ ul li {
     margin: 1rem auto;
     background-color: white;
     font-size: 18px;
-    height: 5vh;
+    height: 40px;;
     padding-left: 5px;
     width: 75%;
     -webkit-box-shadow: var(--box-shadow-specs);
@@ -86,7 +86,7 @@ ul li input {
 .list-buttons {
     display: flex;
     cursor: pointer;
-    height: 3em;
+    height: 45px;
     align-items: center;
     width: 20vh;
     /*width: 10 when small*/

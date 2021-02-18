@@ -126,11 +126,10 @@ function App() {
                         />
                         <input id="date-input" type="date" value={form.date} name='date' onChange={handleFormInput}/>
                     </div>
-                    <div className="input-buttons">
-                        <span className="add" title="Add" onClick={addItems}>
-                            <FaPlus size={20}/>
-                        </span>
-                    </div>
+                    <span className="add" title="Add" onClick={addItems}>
+                        <FaPlus size={20}/>
+                    </span>
+
                 </div>
                 </div>
             </header>

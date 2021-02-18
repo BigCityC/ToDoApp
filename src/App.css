@@ -42,7 +42,7 @@ header {
 }
 .sort-button {
   border-radius: 20%;
-  padding: 1vh 2vh;
+  padding: 10px 20px;
   position: absolute;
   background: linear-gradient(
           to right top,
@@ -74,11 +74,12 @@ header {
 .input-wrapper {
   border: 2px solid yellow;
   flex-basis: 76%;
+  text-align: center;
 }
 
 .input-bar {
   display: flex;
-  height: 5vh;
+  height: 40px;
 }
 
 #todolist-input {
@@ -91,15 +92,13 @@ header {
   max-width: 220px;
 }
 
-/* design for buttons */
-.input-buttons {
-  margin-top: 2vh;
-}
-
 /*color and hover for add button*/
 .add {
   background-color: #8f8f8f;
-  padding: 1vh 5vh;
+  margin-top: 10px;
+  padding: 5px 30px;
+  display: inline-block;
+
 }
 .add:hover {
   background: #a6a6a6;
@@ -109,7 +108,7 @@ header {
 .clear {
   background-color: #f1f140;
   border-radius: 20%;
-  padding: 1.5vh 2.5vh;
+  padding: 2vh 4vh;
   position: fixed;
   top: 2vh;
   right: 2vh;

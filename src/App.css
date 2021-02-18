@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/*the import not working*/
+
 
 /*VARIABLES*/
 :root {
@@ -35,28 +32,29 @@ header {
 .wrapper {
   display: flex;
   justify-content: center;
-  /*/recheck this*/
-  align-items: center;
-  /*position: relative; THIS WAS FOR THE SORT BUTTONS*/
-  border: 1px dotted;
+  align-items: flex-end;
 }
-.sort-button {
+.button {
   border-radius: 20%;
   padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: var(--box-shadow-specs);
+}
+.sort {
   position: absolute;
   background: linear-gradient(
           to right top,
           rgba(235, 142, 30, 0.9),
           rgba(235, 142, 30, 0.5));
-  cursor: pointer;
-  box-shadow: var(--box-shadow-specs);
 }
-.sort-button:hover {
+.sort:hover {
   background: linear-gradient(
           to right top,
           rgba(235, 130, 0,0.9),
           rgba(235, 130, 0,0.5));
 }
+
+
 .highlight{
   -webkit-box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
   -moz-box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
@@ -72,7 +70,7 @@ header {
 }
 
 .input-wrapper {
-  border: 2px solid yellow;
+  /*//check this*/
   flex-basis: 76%;
   text-align: center;
 }
@@ -80,6 +78,7 @@ header {
 .input-bar {
   display: flex;
   height: 40px;
+  margin-bottom: 10px;
 }
 
 #todolist-input {
@@ -94,9 +93,12 @@ header {
 
 /*color and hover for add button*/
 .add {
-  background-color: #8f8f8f;
   margin-top: 10px;
-  padding: 5px 30px;
+  padding: 15px 25px;
+  background: linear-gradient(
+          to right top,
+          rgba(143, 143, 143, 1),
+          rgba(143, 143, 143, 0.9));
   display: inline-block;
 
 }
@@ -104,44 +106,30 @@ header {
   background: #a6a6a6;
 }
 
-/*color and hover for clear button*/
-.clear {
-  background-color: #f1f140;
-  border-radius: 20%;
-  padding: 2vh 4vh;
-  position: fixed;
-  top: 2vh;
-  right: 2vh;
-}
-.clear:hover {
-  background-color: #f5f56b;
-}
 
-/*TODOLIST.JS STYLING*/
 main {
   display: flex;
   flex-direction: column;
-  /*background: linear-gradient(to right top, #D4DAFF, #D9DAFF);*/
 }
 
 
 ul {
-  border: 1px solid yellow;
   margin: 0 auto;
   /*is there a better way*/
-  width: 98%;
+  width: 74%;
 }
 
-
+/*RESPONSIVE DESIGN*/
 @media screen and (max-width: 768px) {
-  .wrapper {
-    border: 1px solid green;
+  .button {
+    padding: 2px 10px;
   }
 
-  .clear {
-      padding: 5px 15px;
-      top: 1vh;
-      right: 1vh;
-   }
+  .add {
+    padding: 4px 15px;
+  }
 
+  ul {
+    width: 96%;
+  }
 }

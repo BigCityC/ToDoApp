@@ -1,33 +1,27 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-
 
 /* list items design */
 ul li {
     display: flex;
-    justify-content: space-between;
-    margin: 1rem auto;
-    background-color: white;
+    margin: 15px auto;
+    background: rgba(255, 255, 255, 0.95);
     font-size: 18px;
-    height: 40px;;
-    padding-left: 5px;
-    width: 75%;
-    -webkit-box-shadow: var(--box-shadow-specs);
-    -moz-box-shadow: var(--box-shadow-specs);
-    box-shadow: var(--box-shadow-specs);
 }
-/* did i need to make the text under a p tag to alter it */
+/*list item text*/
 ul li p {
     flex: 1;
     align-self: center;
-    margin-left: 2px;
 }
 /* line through when a li has the "checked" class */
 p.checked{
     text-decoration: line-through;
+}
+
+.list-item {
+    padding: 10px;
 }
 
 .editable {
@@ -45,12 +39,13 @@ p.checked{
 }
 
 .date_input {
-    font-size: 0.8em;
+    font-size: 16px;
     color: #9d9b9b;
 }
 
 .not_editable {
     display: flex;
+    flex-wrap: wrap;
     flex: 1;
 }
 .list-check {
@@ -72,8 +67,8 @@ ul li input {
 
 /*design for list item date*/
 .date_item {
-    font-size: 0.8em;
-    padding-right: 2rem;
+    font-size: 14px;
+    padding-right: 20px;
     align-self: center;
 }
 .overdue {
@@ -86,26 +81,44 @@ ul li input {
 .list-buttons {
     display: flex;
     cursor: pointer;
-    height: 45px;
-    align-items: center;
-    width: 20vh;
-    /*width: 10 when small*/
+    text-align: center;
+    width: 15vh;
 }
 /*design for edit button*/
-.list-edit{
-    background-color: #6846FA;
+.list-action {
     flex: 1;
-    padding-top:1em;
-    padding-bottom: 1em;
-
 }
 
+
+.list-edit{
+    background-color: #6846FA;
+}
 
 /*!*design for delete button*!*/
 .list-delete {
     background-color: #FA469E;
-    flex: 1;
-    padding-top:1em;
-    padding-bottom: 1em;
 }
 
+.icon {
+    position: relative;
+}
+/*RESPONSIVE DESIGN*/
+@media screen and (max-width: 768px) {
+
+    .list-buttons {
+        width: 12vh;
+    }
+
+    ul li p {
+        flex: 1 1 200px;
+    }
+}
+
+/*//get rid of clear
+*
+/
+make all buttons simolar shape and same class
+fix list item design big long sentence
+including button design
+refactor date back to moment. js
+ */

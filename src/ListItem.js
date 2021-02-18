@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import './ListItem.css';
 import {differenceInDays, format} from 'date-fns';
-import { FaCheck, FaEraser, FaEdit } from 'react-icons/fa';
+import { FaCheck, FaTrashAlt, FaEdit } from 'react-icons/fa';
 import Pluralize from 'react-pluralize'
 
 
@@ -50,13 +50,13 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
         <li key={item.id}>
             {item.complete && <FaCheck className="list-check"/>}
             {editable ?
-                <div className="editable">
+                <div className="list-item editable">
                     <input type="text" value={form.listText} name="listText" onChange={handleInputChange}/>
                     <input className="date_input" id="date-input" type="date" value={form.listDate} name="listDate" onChange={handleInputChange}/>
                 </div>
 
                 :
-                <div className="not_editable">
+                <div className="list-item not_editable">
                     <p className={item.complete ? "checked" : ""} onClick={() => {checkedItem(item.id)}}>
                         {item.value}
                     </p>
@@ -74,12 +74,14 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                 </div>
             }
             <div className="list-buttons">
-                <FaEdit className="list-edit" title="Edit" onClick={() => editItems()} />
-                <FaEraser className="list-delete" title="Delete" onClick={() => {removeItems(item)}} />
+                <span className="list-action list-edit" onClick={() => editItems()}>
+                    <FaEdit className="icon" size={20} title="Edit" />
+
+                </span>
+                <span className="list-action list-delete"  onClick={() => {removeItems(item)}}>
+                    <FaTrashAlt style={{verticalAlign: 'middle'}} className="icon" size={20} title="Delete" />
+                </span>
             </div>
-
-
-
         </li>
     )
 }

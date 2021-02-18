@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import {format, differenceInDays} from 'date-fns';
-import { FaPlus, FaTrashAlt, FaSort, FaClock } from 'react-icons/fa';
+import { FaPlus, FaSort, FaClock } from 'react-icons/fa';
 import ListItem from "./ListItem";
 
 
@@ -71,9 +71,6 @@ function App() {
 
     }
 
-    function clearItems() {
-        setItems([])
-    }
 
     function checkedItem(id) {
             const newTodos = items.map((item) => {
@@ -101,16 +98,13 @@ function App() {
         <>
             <header>
                 <h2 className="title">Todo List</h2>
-                <span className="clear" title="Clear All" onClick={clearItems}>
-                    <FaTrashAlt size={20}/>
-                </span>
                 <div className="wrapper">
-                    <span className={`sort-button date ${sortBy === 'date' && "highlight"}`} onClick={() => {
+                    <span className={`button sort date ${sortBy === 'date' && "highlight"}`} onClick={() => {
                         sortList('date')
                     }}>
                         <FaClock size={30} />
                     </span>
-                    <span className={`sort-button name ${sortBy === 'name' && "highlight"}`} onClick={() => {
+                    <span className={`button sort name ${sortBy === 'name' && "highlight"}`} onClick={() => {
                         sortList('name')
                     }}>
                         <FaSort size={30}/>
@@ -126,7 +120,7 @@ function App() {
                         />
                         <input id="date-input" type="date" value={form.date} name='date' onChange={handleFormInput}/>
                     </div>
-                    <span className="add" title="Add" onClick={addItems}>
+                    <span className="button add" title="Add" onClick={addItems}>
                         <FaPlus size={20}/>
                     </span>
 

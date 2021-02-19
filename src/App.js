@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
-import {format, differenceInDays} from 'date-fns';
+import moment from "moment";
 import { FaPlus, FaSort, FaClock } from 'react-icons/fa';
 import ListItem from "./ListItem";
 
 
 const initForm = {
     task: '',
-    date: format(new Date(), 'yyyy-MM-dd')
+    date: moment().format("YYYY-MM-DD"),
 }
 
 console.log(initForm)
@@ -58,7 +58,7 @@ function App() {
 
     function addItems() {
         if (form.task) {
-            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, overdue: differenceInDays(new Date(form.date), new Date()), complete: false}]
+            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, overdue:  moment(form.date).diff(moment(), 'days'), complete: false}]
             setItems(_items)
             setForm(initForm)
         } else {

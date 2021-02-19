@@ -5,13 +5,12 @@ import moment from "moment";
 import { FaPlus, FaSort, FaClock } from 'react-icons/fa';
 import ListItem from "./ListItem";
 
-
+const currentDay = moment('2021,02,20').format("YYYY-MM-DD")
 const initForm = {
     task: '',
-    date: moment().format("YYYY-MM-DD"),
+    date: currentDay,
 }
 
-console.log(initForm)
 const LOCAL_STORAGE_KEY = 'todoApp.items'
 
 function App() {
@@ -19,18 +18,27 @@ function App() {
     const [sortAsc, setSortAsc] = useState(true)
     const [sortBy, setSortBy] = useState('date')
     const [form, setForm] = useState(initForm)
+    const [today, setToday] = useState(initForm.date)
 
 
     useEffect(() => {
         const data = localStorage.getItem(LOCAL_STORAGE_KEY)
         const storedItems = JSON.parse(data)
-        if (storedItems) setItems(storedItems)
+
+        if (storedItems) {
+            const updatedList = storedItems.map((item) => ({
+                ...item,
+                overdue: moment(item.date).diff(moment(), 'days')
+            }))
+            setItems(updatedList)
+        }
     }, [])
 
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
     }, [items])
+
 
     useEffect(() => {
         if (items.length) {
@@ -58,12 +66,13 @@ function App() {
 
     function addItems() {
         if (form.task) {
-            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, overdue:  moment(form.date).diff(moment(), 'days'), complete: false}]
+            console.log(form.date)
+            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, overdue:  moment(form.date).diff(moment(currentDay), 'days'), complete: false}]
             setItems(_items)
-            setForm(initForm)
         } else {
             alert('Input cannot be blank, please try again.')
         }
+        setForm(initForm)
     }
 
     function removeItems(item) {

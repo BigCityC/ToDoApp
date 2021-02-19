@@ -67,7 +67,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
                         </span>
                     :
                         <span className="ontime date_item">
-                             {`Due:  ${moment(item.date).format("MMM Do YYYY")}`}
+                             {`Due:  ${moment(item.date).format("MMM Do, YYYY")}`}
                         </span>
                     }
 
@@ -79,7 +79,7 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
 
                 </span>
                 <span className="list-action list-delete"  onClick={() => {removeItems(item)}}>
-                    <FaTrashAlt style={{verticalAlign: 'middle'}} className="icon" size={20} title="Delete" />
+                    <FaTrashAlt className="icon" size={20} title="Delete" />
                 </span>
             </div>
         </li>

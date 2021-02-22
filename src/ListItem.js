@@ -51,7 +51,12 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
             {item.complete && <FaCheck className="list-check"/>}
             {editable ?
                 <div className="list-item editable">
-                    <input type="text" value={form.listText} name="listText" onChange={handleInputChange}/>
+                    {form.listText.length <= 23 ?
+                        <input type="text" value={form.listText} name="listText" onChange={handleInputChange}/>
+                        :
+                        <textarea value={form.listText} name="listText" onChange={handleInputChange}/>
+                    }
+
                     <input className="date_input" id="date-input" type="date" value={form.listDate} name="listDate" onChange={handleInputChange}/>
                 </div>
 

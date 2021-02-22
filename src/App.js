@@ -109,34 +109,37 @@ function App() {
         <>
             <header>
                 <h2 className="title">Todo List</h2>
-                <div className="wrapper">
-                    <span className={`button sort date ${sortBy === 'date' && "highlight"}`} onClick={() => {
-                        sortList('date')
-                    }}>
-                        <FaClock size={30} />
-                    </span>
-                    <span className={`button sort name ${sortBy === 'name' && "highlight"}`} onClick={() => {
-                        sortList('name')
-                    }}>
-                        <FaSort size={30}/>
-                    </span>
-                <div className="input-wrapper">
-                    <div className="input-bar">
-                        <input id="todolist-input"
-                               placeholder="Input a Task Here..."
-                               type="text"
-                               onChange={handleFormInput}
-                               value={form.task}
-                               name='task'
-                        />
-                        <input id="date-input" type="date" value={form.date} name='date' onChange={handleFormInput}/>
+                    <div className="input-wrapper">
+                        <div className="input-bar">
+                            <input id="todolist-input"
+                                   placeholder="Input a Task Here..."
+                                   type="text"
+                                   onChange={handleFormInput}
+                                   value={form.task}
+                                   name='task'
+                            />
+                            <input id="date-input" type="date" value={form.date} name='date' onChange={handleFormInput}/>
+                        </div>
                     </div>
-                    <span className="button add" title="Add" onClick={addItems}>
-                        <FaPlus size={20}/>
-                    </span>
+                    <div className="input-wrapper input-buttons">
+                        <span
+                            className={`button sort ${sortBy === 'date' && "highlight"}`}
+                            onClick={() => {sortList('date')}}>
+                                <FaClock size={30} />
+                        </span>
 
-                </div>
-                </div>
+                        <span
+                            className="button add" title="Add"
+                            onClick={addItems}>
+                                <FaPlus size={25}/>
+                        </span>
+
+                        <span
+                            className={`button sort ${sortBy === 'name' && "highlight"}`}
+                            onClick={() => {sortList('name')}}>
+                                <FaSort size={30}/>
+                        </span>
+                    </div>
             </header>
 
             <main>

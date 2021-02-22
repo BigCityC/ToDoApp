@@ -19,7 +19,7 @@ body {
 
 header {
   background: linear-gradient(45deg, rgba(98,52,247,1) 0%, rgba(211,93,240,1) 60%, rgba(214,12,245,1) 99%, rgba(176,99,242,1) 100%);
-  padding: 15px;
+  padding: 10px;
   position: relative;
 }
 
@@ -30,50 +30,10 @@ header {
   font-size: 10vh;
 }
 
-.wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-.button {
-  border-radius: 20%;
-  padding: 10px 20px;
-  cursor: pointer;
-  box-shadow: var(--box-shadow-specs);
-}
-.sort {
-  position: absolute;
-  background: linear-gradient(
-          to right top,
-          rgba(235, 142, 30, 0.9),
-          rgba(235, 142, 30, 0.5));
-}
-.sort:hover {
-  background: linear-gradient(
-          to right top,
-          rgba(235, 130, 0,0.9),
-          rgba(235, 130, 0,0.5));
-}
-
-
-.highlight{
-  -webkit-box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
-  -moz-box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
-  box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
-}
-
-.date {
-  left: 3vh;;
-}
-
-.name {
-  right: 3vh;;
-}
-
 .input-wrapper {
-  /*//check this*/
-  flex-basis: 76%;
-  text-align: center;
+  margin: 0 auto;
+  padding-top: 10px;
+  width: 75%;
 }
 
 .input-bar {
@@ -92,16 +52,42 @@ header {
   max-width: 220px;
 }
 
+.input-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  border-radius: 20%;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: var(--box-shadow-specs);
+}
+.sort {
+  background: linear-gradient(
+          to right top,
+          rgba(235, 142, 30, 0.9),
+          rgba(235, 142, 30, 0.5));
+}
+.sort:hover {
+  background: linear-gradient(
+          to right top,
+          rgba(235, 130, 0,0.9),
+          rgba(235, 130, 0,0.5));
+}
+
+.highlight{
+  -webkit-box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
+  -moz-box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
+  box-shadow: 0px 0px 12px 7px rgba(242,242,242,1);
+}
+
 /*color and hover for add button*/
 .add {
-  margin-top: 10px;
-  padding: 15px 25px;
   background: linear-gradient(
           to right top,
           rgba(143, 143, 143, 1),
           rgba(143, 143, 143, 0.9));
-  display: inline-block;
-
 }
 .add:hover {
   background: #a6a6a6;
@@ -111,26 +97,30 @@ header {
 main {
   display: flex;
   flex-direction: column;
+  flex-basis: 76%;
 }
 
 
 ul {
   margin: 0 auto;
-  /*is there a better way*/
   width: 74%;
 }
 
 /*RESPONSIVE DESIGN*/
 @media screen and (max-width: 768px) {
-  .button {
-    padding: 2px 10px;
+
+  .input-wrapper {
+    margin: 0 auto;
+    width: 100%;
   }
 
-  .add {
-    padding: 4px 15px;
+  main {
+    width: 100%;
+    padding: 10px;
   }
 
   ul {
-    width: 96%;
+    width: 100%;
+    margin: 0;
   }
 }

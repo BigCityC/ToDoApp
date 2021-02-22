@@ -22,16 +22,18 @@ p.checked{
 
 .list-item {
     padding: 10px;
+    display: flex;
 }
 
 .editable {
-    display: flex;
-    justify-content:space-between;
     flex: 1;
+    flex-wrap: wrap;
 }
 
 .editable input[type="text"] {
     flex: 4;
+    word-break: break-word;
+
 }
 
 .editable input[type="date"] {
@@ -110,7 +112,7 @@ ul li input {
 @media screen and (max-width: 768px) {
 
     .list-buttons {
-        width: 12vh;
+        width: 120px;
     }
 
     ul li p {

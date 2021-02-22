@@ -87,6 +87,10 @@ ul li input {
 /*design for edit button*/
 .list-action {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -113,12 +117,3 @@ ul li input {
         flex: 1 1 200px;
     }
 }
-
-/*//get rid of clear
-*
-/
-make all buttons simolar shape and same class
-fix list item design big long sentence
-including button design
-refactor date back to moment. js
- */

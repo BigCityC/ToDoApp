@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap");
+
 /*the import not working*/
 
 
@@ -9,7 +10,7 @@
 
 body {
   font-family: Roboto, sans-serif;
-  background: url("./background.jpg") no-repeat center center fixed;
+  background: url("images/background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

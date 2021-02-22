@@ -5,7 +5,8 @@ import moment from "moment";
 import { FaPlus, FaSort, FaClock } from 'react-icons/fa';
 import ListItem from "./ListItem";
 
-const currentDay = moment('2021,02,20').format("YYYY-MM-DD")
+
+const currentDay = moment().format("YYYY-MM-DD")
 const initForm = {
     task: '',
     date: currentDay,
@@ -18,20 +19,24 @@ function App() {
     const [sortAsc, setSortAsc] = useState(true)
     const [sortBy, setSortBy] = useState('date')
     const [form, setForm] = useState(initForm)
-    const [today, setToday] = useState(initForm.date)
+    const [loading, setLoader] = useState(false)
 
 
     useEffect(() => {
         const data = localStorage.getItem(LOCAL_STORAGE_KEY)
         const storedItems = JSON.parse(data)
-
+        let timer;
         if (storedItems) {
-            const updatedList = storedItems.map((item) => ({
-                ...item,
-                overdue: moment(item.date).diff(moment(), 'days')
-            }))
-            setItems(updatedList)
+            timer = setTimeout(() => {
+                console.log('setTimeout called!');
+                const updatedList = storedItems.map((item) => ({
+                    ...item,
+                    overdue: moment(item.date).diff(moment(), 'days')
+                }))
+                setItems(updatedList)
+            }, 1000);
         }
+        return () => clearInterval(timer);
     }, [])
 
 
@@ -66,7 +71,6 @@ function App() {
 
     function addItems() {
         if (form.task) {
-            console.log(form.date)
             const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, overdue:  moment(form.date).diff(moment(currentDay), 'days'), complete: false}]
             setItems(_items)
         } else {

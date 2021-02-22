@@ -19,7 +19,6 @@ function App() {
     const [sortAsc, setSortAsc] = useState(true)
     const [sortBy, setSortBy] = useState('date')
     const [form, setForm] = useState(initForm)
-    const [loading, setLoader] = useState(false)
 
 
     useEffect(() => {
@@ -34,7 +33,7 @@ function App() {
                     overdue: moment(item.date).diff(moment(), 'days')
                 }))
                 setItems(updatedList)
-            }, 1000);
+            }, 100);
         }
         return () => clearInterval(timer);
     }, [])

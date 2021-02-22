@@ -27,7 +27,6 @@ function App() {
         let timer;
         if (storedItems) {
             timer = setTimeout(() => {
-                console.log('setTimeout called!');
                 const updatedList = storedItems.map((item) => ({
                     ...item,
                     overdue: moment(item.date).diff(moment(), 'days')

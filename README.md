@@ -31,7 +31,6 @@ localhost:3000/
 
 Reflection  
 I set out to build a todo list that I would want to use in my daily life. It's easy to use, and has a simple UI.
-What did you set out to build?
 The challenges I faced with this project is learning to understand the basics of React components, specifically functional components.
 Some unexpected obstacles were understanding React LifeCycles and how states and props work within the components.
 The tools that I used to implement this project were Create-React-App, HTML/CSS, JSX, and Amplify. This was my first React project, so I wanted to keep it simple to get 

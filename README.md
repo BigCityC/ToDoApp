@@ -29,7 +29,7 @@ npm start
 
 localhost:3000/
 
-Reflection
+Reflection  
 I set out to build a todo list that I would want to use in my daily life. It's easy to use, and has a simple UI.
 What did you set out to build?
 The challenges I faced with this project is learning to understand the basics of React components, specifically functional components.

@@ -3,6 +3,7 @@ import './ListItem.css';
 import moment from "moment";
 import { FaCheck, FaTrashAlt, FaEdit } from 'react-icons/fa';
 import Pluralize from 'react-pluralize'
+import axios from "axios";
 
 
 
@@ -43,6 +44,14 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
             }
         })
         setItems(updatedList)
+
+        // axios.put(`http://localhost:5000/api/sets/${id}`, {text: 'sdfsd' ,date :'sdfdsf'})
+        //     .then(function (response) {
+        //         console.log('SUCCESS');
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     })
 
     }
 

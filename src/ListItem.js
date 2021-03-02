@@ -31,7 +31,7 @@ export default function ListItem({ item, setItems, checkedItem, api}) {
     }
 
     function handleToggleComplete(id) {
-        api.put(`http://localhost:5000/api/item/${id}`,
+        api.put(`item/${id}`,
             {
                 value: form.listText,
                 date :form.listDate,
@@ -46,7 +46,7 @@ export default function ListItem({ item, setItems, checkedItem, api}) {
     }
 
     function removeItems(item){
-        api.delete('/item/' + item.id)
+        api.delete(`/item/${item.id}`)
             .then(res => {
                 setItems(res.data)
                 console.log(res.data)

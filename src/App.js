@@ -7,13 +7,13 @@ import ListItem from "./ListItem";
 import axios from "axios";
 
 
-const currentDay = moment().format("YYYY-MM-DD")
+const currentDay = moment('2021, 03, 28').format("YYYY-MM-DD")
 const initForm = {
     task: '',
     date: currentDay,
 }
 
-const LOCAL_STORAGE_KEY = 'todoApp.items'
+
 const api = axios.create({
     baseURL: 'http://localhost:5000/api/'
 })
@@ -39,17 +39,15 @@ function App() {
     }, [])
 
     // useEffect(() => {
-    //     const data = localStorage.getItem(LOCAL_STORAGE_KEY)
-    //     const storedItems = JSON.parse(data)
-    //
     //     let timer;
-    //     if (storedItems) {
+    //     if (items) {
     //         timer = setTimeout(() => {
-    //             const updatedList = data.map((item) => ({
-    //                 ...item,
-    //                 overdue: moment(item.date).diff(moment(), 'days')
-    //             }))
-    //             setItems(updatedList)
+    //             // const updatedList = items.map((item) => ({
+    //             //     ...item,
+    //             //     overdue: moment(item.date).diff(moment(), 'days')
+    //             // }))
+    //             setItems({overdue: moment("2021, 03, 01").diff(moment(), 'days')})
+    //             console.log("timer tuns")
     //         }, 100);
     //     }
     //     return () => clearInterval(timer);

@@ -15,7 +15,7 @@ const initForm = {
 
 const LOCAL_STORAGE_KEY = 'todoApp.items'
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api/items/'
+    baseURL: 'http://localhost:5000/api/'
 })
 
 function App() {
@@ -25,9 +25,8 @@ function App() {
     const [form, setForm] = useState(initForm)
 
     const getItems = () => {
-        api.get('/')
+        api.get('/items/')
             .then(function (res) {
-                console.log(res.data);
                 setItems(res.data)
             })
             .catch(function (error) {
@@ -37,7 +36,6 @@ function App() {
 
     useEffect(() => {
         getItems()
-
     }, [])
 
     // useEffect(() => {
@@ -56,11 +54,6 @@ function App() {
     //     }
     //     return () => clearInterval(timer);
     // }, [])
-
-
-    useEffect(() => {
-        // localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
-    }, [items])
 
 
     useEffect(() => {
@@ -86,41 +79,22 @@ function App() {
     }
 
 
-    async  function addItems() {
-        const _items = {
+    function addItems() {
+        const item = {
                     id: uuidv4(),
                     value: form.task,
                     date: form.date,
                     overdue: moment(form.date).diff(moment(currentDay), 'days'),
                     complete: false
-                });
-        setItems(_items)
-        api.post('/', { items })
+                };
+        api.post('/items', { item })
             .then((res) => {
-                console.log(res)
+                setItems(res.data)
             })
             .catch((error) => {
                 console.log(error)
             })
-    }
-
-        // if (form.task) {
-        //     const _items = [...items, {
-        //         id: uuidv4(),
-        //         value: form.task,
-        //         date: form.date,
-        //         overdue: moment(form.date).diff(moment(currentDay), 'days'),
-        //         complete: false
-        //     }]
-        //     setItems(_items)
-        // } else {
-        //     alert('Input cannot be blank, please try again.')
-        // }
-        // setForm(initForm)
-
-    function removeItems(item) {
-        setItems(items.filter(removedItem => removedItem !== item))
-
+        setForm(initForm)
     }
 
 
@@ -193,10 +167,9 @@ function App() {
                         <ListItem
                             key={index}
                             item={item}
-                            items={items}
                             checkedItem={checkedItem}
-                            removeItems={removeItems}
                             setItems={setItems}
+                            api={api}
                         />
                     ))}
                 </ul>

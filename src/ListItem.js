@@ -3,11 +3,11 @@ import './ListItem.css';
 import moment from "moment";
 import { FaCheck, FaTrashAlt, FaEdit } from 'react-icons/fa';
 import Pluralize from 'react-pluralize'
-import axios from "axios";
 
 
 
-export default function ListItem({ item, items, setItems, checkedItem, removeItems}) {
+
+export default function ListItem({ item, setItems, checkedItem, api}) {
 
     const initForm = {
         listText: item.value,
@@ -31,28 +31,29 @@ export default function ListItem({ item, items, setItems, checkedItem, removeIte
     }
 
     function handleToggleComplete(id) {
-        const updatedList = items.map((item) => {
-            if (item.id === id) {
-                return {
-                    ...item,
-                    value: form.listText,
-                    date: form.listDate,
-                    overdue: moment(item.date).diff(moment(), 'days'),
-                }
-            } else {
-                return item
-            }
-        })
-        setItems(updatedList)
+        api.put(`http://localhost:5000/api/item/${id}`,
+            {
+                value: form.listText,
+                date :form.listDate,
+                overdue: moment(item.date).diff(moment(), 'days')
+            })
+            .then(function (res) {
+                setItems(res.data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
 
-        // axios.put(`http://localhost:5000/api/sets/${id}`, {text: 'sdfsd' ,date :'sdfdsf'})
-        //     .then(function (response) {
-        //         console.log('SUCCESS');
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     })
-
+    function removeItems(item){
+        api.delete('/item/' + item.id)
+            .then(res => {
+                setItems(res.data)
+                console.log(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     return (

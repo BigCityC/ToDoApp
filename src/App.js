@@ -7,7 +7,7 @@ import ListItem from "./ListItem";
 import axios from "axios";
 
 
-const currentDay = moment('2021, 03, 28').format("YYYY-MM-DD")
+const currentDay = moment().format("YYYY-MM-DD")
 const initForm = {
     task: '',
     date: currentDay,
@@ -38,20 +38,24 @@ function App() {
         getItems()
     }, [])
 
-    // useEffect(() => {
-    //     let timer;
-    //     if (items) {
-    //         timer = setTimeout(() => {
-    //             // const updatedList = items.map((item) => ({
-    //             //     ...item,
-    //             //     overdue: moment(item.date).diff(moment(), 'days')
-    //             // }))
-    //             setItems({overdue: moment("2021, 03, 01").diff(moment(), 'days')})
-    //             console.log("timer tuns")
-    //         }, 100);
-    //     }
-    //     return () => clearInterval(timer);
-    // }, [])
+    useEffect(() => {
+        let timer;
+        timer = setTimeout(() => {
+            api.get('items/')
+                .then((res) => {
+                    let items = res.data
+                    const updatedList = items.map((item) => ({
+                            ...item,
+                            overdue: moment(item.date).diff(moment(), 'days')
+                        }))
+                        setItems(updatedList)
+                })
+                .catch(function (error) {
+                    console.log(error.message);
+                })
+            }, 100);
+        return () => clearTimeout(timer);
+    }, [])
 
 
     useEffect(() => {

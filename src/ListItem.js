@@ -7,7 +7,7 @@ import Pluralize from 'react-pluralize'
 
 
 
-export default function ListItem({ item, setItems, handleListComplete, api}) {
+export default function ListItem({ items, item, setItems, handleListComplete, api}) {
 
     const initForm = {
         listText: item.value,
@@ -43,6 +43,22 @@ export default function ListItem({ item, setItems, handleListComplete, api}) {
             .catch(function (error) {
                 console.log(error);
             })
+            .finally(function () {
+                const updatedList = items.map((item) => {
+                    if (item.id === id) {
+                        return {
+                            ...item,
+                            value: form.listText,
+                            date: form.listDate,
+                            overdue: moment(item.date).diff(moment(), 'days'),
+                        }
+                    } else {
+                        return item
+                    }
+                })
+                setItems(updatedList)
+
+            })
     }
 
     function removeItem(item){
@@ -56,6 +72,10 @@ export default function ListItem({ item, setItems, handleListComplete, api}) {
             })
     }
 
+    function removeLocalItem(item) {
+        setItems(items.filter(removedItem => removedItem !== item))
+
+    }
 
     function checkedItem(id) {
         api.put(`item/${id}/complete`,
@@ -68,6 +88,17 @@ export default function ListItem({ item, setItems, handleListComplete, api}) {
                 console.log(error)
             })
 
+    }
+
+    function checkedLocalItem(id) {
+        const newTodos = items.map((item) => {
+            if (item.id !== id) {
+                return item
+            } else {
+                return {...item, complete: !item.complete}
+            }
+        })
+        setItems(newTodos)
     }
 
     return (
@@ -89,6 +120,7 @@ export default function ListItem({ item, setItems, handleListComplete, api}) {
                     <p className={item.complete ? "checked" : ""} onClick={() =>
                     {
                         checkedItem(item.id)
+                        checkedLocalItem(item.id)
                     }}>
                         {item.value}
                     </p>
@@ -110,7 +142,10 @@ export default function ListItem({ item, setItems, handleListComplete, api}) {
                     <FaEdit className="icon" size={20} title="Edit" />
 
                 </span>
-                <span className="list-action list-delete"  onClick={() => {removeItem(item)}}>
+                <span className="list-action list-delete"  onClick={() => {
+                    removeItem(item)
+                    removeLocalItem(item)
+                }}>
                     <FaTrashAlt className="icon" size={20} title="Delete" />
                 </span>
             </div>

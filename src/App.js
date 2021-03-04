@@ -13,6 +13,8 @@ const initForm = {
     date: currentDay,
 }
 
+const LOCAL_STORAGE_KEY = 'todoApp.items'
+
 
 const api = axios.create({
     baseURL: 'http://localhost:5000/api/'
@@ -57,6 +59,26 @@ function App() {
         return () => clearTimeout(timer);
     }, [])
 
+    useEffect(() => {
+        const data = localStorage.getItem(LOCAL_STORAGE_KEY)
+        const storedItems = JSON.parse(data)
+        let timer;
+        if (storedItems) {
+            timer = setTimeout(() => {
+                const updatedList = storedItems.map((item) => ({
+                    ...item,
+                    overdue: moment(item.date).diff(moment(), 'days')
+                }))
+                setItems(updatedList)
+            }, 100);
+        }
+        return () => clearTimeout(timer);
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
+    }, [items])
+
 
     useEffect(() => {
         if (items.length) {
@@ -96,6 +118,16 @@ function App() {
             .catch((error) => {
                 console.log(error)
             })
+        setForm(initForm)
+    }
+
+    function addLocalItems() {
+        if (form.task) {
+            const _items = [...items, {id: uuidv4(), value: form.task, date: form.date, overdue:  moment(form.date).diff(moment(currentDay), 'days'), complete: false}]
+            setItems(_items)
+        } else {
+            alert('Input cannot be blank, please try again.')
+        }
         setForm(initForm)
     }
 
@@ -151,7 +183,10 @@ function App() {
 
                     <span
                         className="button add" title="Add"
-                        onClick={addItems}>
+                        onClick={()=>{
+                            addItems()
+                            addLocalItems()
+                        }}>
                                 <FaPlus size={25}/>
                         </span>
 
@@ -174,6 +209,7 @@ function App() {
                             handleListComplete={handleListComplete}
                             setItems={setItems}
                             api={api}
+                            items={items}
                         />
                     ))}
                 </ul>

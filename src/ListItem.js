@@ -7,7 +7,7 @@ import Pluralize from 'react-pluralize'
 
 
 
-export default function ListItem({ item, setItems, checkedItem, api}) {
+export default function ListItem({ item, setItems, handleListComplete, api}) {
 
     const initForm = {
         listText: item.value,
@@ -45,7 +45,7 @@ export default function ListItem({ item, setItems, checkedItem, api}) {
             })
     }
 
-    function removeItems(item){
+    function removeItem(item){
         api.delete(`/item/${item.id}`)
             .then(res => {
                 setItems(res.data)
@@ -54,6 +54,20 @@ export default function ListItem({ item, setItems, checkedItem, api}) {
             .catch((error) => {
                 console.log(error)
             })
+    }
+
+
+    function checkedItem(id) {
+        api.put(`item/${id}/complete`,
+            {complete:!item.complete})
+            .then((res)=>{
+                setItems(res.data)
+                handleListComplete(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
     }
 
     return (
@@ -72,7 +86,10 @@ export default function ListItem({ item, setItems, checkedItem, api}) {
 
                 :
                 <div className="list-item not_editable">
-                    <p className={item.complete ? "checked" : ""} onClick={() => {checkedItem(item.id)}}>
+                    <p className={item.complete ? "checked" : ""} onClick={() =>
+                    {
+                        checkedItem(item.id)
+                    }}>
                         {item.value}
                     </p>
 
@@ -93,7 +110,7 @@ export default function ListItem({ item, setItems, checkedItem, api}) {
                     <FaEdit className="icon" size={20} title="Edit" />
 
                 </span>
-                <span className="list-action list-delete"  onClick={() => {removeItems(item)}}>
+                <span className="list-action list-delete"  onClick={() => {removeItem(item)}}>
                     <FaTrashAlt className="icon" size={20} title="Delete" />
                 </span>
             </div>

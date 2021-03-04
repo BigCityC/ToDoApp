@@ -99,32 +99,6 @@ function App() {
         setForm(initForm)
     }
 
-    function handleListComplete() {
-        const result = items.every((obj)=> obj.complete === true)
-        if (result) {
-            console.log('alert')
-        }
-    }
-
-
-    function checkedItem(id) {
-        api.get(`item/${id}`)
-            .then((res)=>{
-                //Im trying to figure out how to update the frontend once the backend has the updated
-                //item complete
-                // let items = res.data
-                // const newTodos = items.map((item) => {
-                //     if (item.id !== id) {
-                //         return item
-                //     } else {
-                //         return {...item, complete: !item.complete}
-                //     }
-                // })
-                // setItems(newTodos)
-            })
-        handleListComplete()
-    }
-
 
     function sortList(by) {
         if (sortBy === by) {
@@ -132,6 +106,20 @@ function App() {
         } else {
             setSortBy(by)
             setSortAsc(true)
+        }
+    }
+
+    function handleListComplete(data) {
+        let result = data.every((obj)=> obj.complete === true)
+        if (result) {
+            if (window.confirm("All tasks complete! Do you want to clear the tasks?")) {
+                api.delete('/items/delete')
+                    .then(res => {
+                        setItems(res.data)
+                    }).catch((error) => {
+                    console.log(error)
+                })
+            }
         }
     }
 
@@ -183,7 +171,7 @@ function App() {
                         <ListItem
                             key={index}
                             item={item}
-                            checkedItem={checkedItem}
+                            handleListComplete={handleListComplete}
                             setItems={setItems}
                             api={api}
                         />

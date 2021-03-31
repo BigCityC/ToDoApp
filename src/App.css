@@ -18,7 +18,7 @@ body {
 }
 
 header {
-  background: linear-gradient(45deg, rgba(98,52,247,1) 0%, rgba(211,93,240,1) 60%, rgba(214,12,245,1) 99%, rgba(176,99,242,1) 100%);
+  background: linear-gradient(45deg, rgba(98,52,247,1) 30%, rgb(14, 130, 255) 60%, rgb(1, 40, 162) 99%);
   padding: 10px;
   position: relative;
 }
